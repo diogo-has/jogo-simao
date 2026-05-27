@@ -1,9 +1,9 @@
 #include "Jogo.h"
-#include "Jogador.h" // temporário
 #include "Menu.h"
 #include "Plataforma.h"
 #include "Formigueiro.h"
 #include "ListaEntidades.h"
+#include "Macaco.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -15,10 +15,12 @@ Jogo::Jogo() : gg(), pJog1() {
    
     Entidades::Obstaculos::Plataforma plat1;
     Entidades::Obstaculos::Formigueiro f1;
+    Entidades::Personagens::Macaco m1;
 
     
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&plat1));
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&f1));
+    listaEnt.incluir(static_cast<Entidades::Entidade*>(&m1));
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
     
 
