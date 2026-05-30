@@ -1,0 +1,9 @@
+anotações para não esquecer de implementar
+
+criar função geradora com float x e y para passar coordenadas
+obstaculizar dos obstaculos (colisao)
+mover dos inimigos
+danificar dos inimigos
+danificar dos obstaculos
+salvar de todos
+salvardatabuffer de todos

@@ -2,7 +2,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Personagem::Personagem(): velocidade(0.f, 0.f), aceleracao(0.f, 0.f) {
+		Personagem::Personagem(): velocidade(0.f, 0.f), aceleracao(0.f, 0.f), num_vidas(3) {
 		}
 		Personagem::~Personagem() {
 		}
