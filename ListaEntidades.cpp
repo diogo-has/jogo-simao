@@ -1,8 +1,9 @@
 #include "ListaEntidades.h"
+#include <iostream>
 
 
 namespace Listas {
-	ListaEntidades::ListaEntidades(): lista() {
+	ListaEntidades::ListaEntidades() : lista() {
 		lista.limpar();
 	}
 
@@ -16,10 +17,11 @@ namespace Listas {
 
 	void ListaEntidades::percorrer() {
 		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it = lista.begin();
-		while(it != NULL){
+		while (it != NULL) {
 			(*it)->executar();
 			(*it)->desenhar();
 			++it;
 		}
 	}
 }
+	

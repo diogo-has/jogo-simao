@@ -6,6 +6,7 @@
 #include "Macaco.h"
 #include "Cacador.h"
 #include "Tronco.h"
+#include "FasePrimeira.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -15,22 +16,21 @@ using Entidades::Personagens::Jogador;
 Jogo::Jogo() : gg(), pJog1() {
     Ente::setGG(&gg);
    
-    //criar inicializarentes()
-    Entidades::Obstaculos::Plataforma plat1;
-    Entidades::Obstaculos::Formigueiro f1;
-    Entidades::Obstaculos::Tronco t1;
-    Entidades::Personagens::Macaco m1;
-    Entidades::Personagens::Cacador c1;
+    
+
+    
+    
+    
+    
+    
 
 
-    //criar incluirtudo()
-    listaEnt.incluir(static_cast<Entidades::Entidade*>(&plat1));
-    listaEnt.incluir(static_cast<Entidades::Entidade*>(&f1));
-    listaEnt.incluir(static_cast<Entidades::Entidade*>(&m1));
-    listaEnt.incluir(static_cast<Entidades::Entidade*>(&c1));
-    listaEnt.incluir(static_cast<Entidades::Entidade*>(&t1));
+
+    
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
 
+   
+    
 
     executar();
 }
@@ -38,6 +38,10 @@ Jogo::Jogo() : gg(), pJog1() {
 Jogo::~Jogo() {}
 
 void Jogo::executar() {
+    //temporario
+    Fases::FasePrimeira fase1;
+    fase1.setJog(&pJog1);
+    //
     while (gg.janelaAberta()) {
         gg.atualizarDeltaTime();
 
@@ -74,9 +78,13 @@ void Jogo::executar() {
 
         gg.limpar();
 
-        listaEnt.percorrer();    
+        fase1.executar();
+        listaEnt.percorrer();//mudar para lista de jogadores?
+        
 
         gg.mostrar();
     }
 }
+
+
 

@@ -28,6 +28,7 @@ namespace Gerenciadores {
 		void desenharEnte(Ente* pE);
 		void atualizarDeltaTime();
 		static float getDeltaTime();
+		void desenhaBackground(sf::Drawable* pObjeto);
 	};
 }
 

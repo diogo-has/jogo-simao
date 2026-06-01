@@ -108,6 +108,10 @@ namespace Listas {
 					{
 						aux = pPrim;
 						pPrim = pPrim->getProx();
+						if (aux->getInfo() != NULL) {
+							delete aux->getInfo();
+						}
+
 						delete aux;
 
 					}
@@ -131,6 +135,11 @@ namespace Listas {
 						return Iterator<TL>(pUlt->getProx());
 					}
 					else { return Iterator<TL>(NULL); }
+				}
+				Elemento<TL>* getPrim()
+				{
+
+					return pPrim;
 				}
 	};
 

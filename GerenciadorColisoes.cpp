@@ -43,7 +43,7 @@ namespace Gerenciadores {
 
 	void GerenciadorColisoes::tratarColisoesJogsProjeteis()
 	{
-		set<Projetil*>::iterator it;
+		set<Fireball*>::iterator it;
 		for (it = LPs.begin(); it != LPs.end(); it++) {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu) {
@@ -79,7 +79,7 @@ namespace Gerenciadores {
 		LOs.push_back(po);
 	}
 
-	void GerenciadorColisoes::incluirProjetil(Projetil* pp)
+	void GerenciadorColisoes::incluirProjetil(Fireball* pp)
 	{
 		LPs.insert(pp);
 	}
@@ -90,6 +90,11 @@ namespace Gerenciadores {
 		tratarColisoesJogsObstacs();
 		tratarColisoesJogsProjeteis();
 	}
+	void GerenciadorColisoes::setJogador(Personagens::Jogador* pj)
+	{
+		pJog1 = pj;
+	}
 
+	
 	
 }

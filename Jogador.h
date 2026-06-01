@@ -19,6 +19,9 @@ namespace Entidades {
 			void salvar();		
 			void mover();
 			void pular();
+			void setNoChao(bool b);
+			void setPosicaoY(float y);
+			void setpulo(float t);
 		};
 	}
 }

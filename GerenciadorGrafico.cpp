@@ -39,5 +39,11 @@ namespace Gerenciadores {
 		return dt;
 	}
 
+	void GerenciadorGrafico::desenhaBackground(sf::Drawable* pObjeto)
+	{
+		if (pObjeto) {
+			janela.draw(*pObjeto);
+		}
+	}
    
 }

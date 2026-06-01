@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GerenciadorGrafico.h"
+#include "GerenciadorColisoes.h"
 #include "Jogador.h"
 #include "ListaEntidades.h" //temporario
 

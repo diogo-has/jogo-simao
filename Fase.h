@@ -2,6 +2,7 @@
 
 #include "Ente.h"
 #include "ListaEntidades.h"
+#include "GerenciadorColisoes.h"
 
 // Professor sugeriu fazer a relação "fase - geren. col." ser bidirecional para fazer o tratamento do chão
 // Chefão tem que atirar
@@ -10,7 +11,7 @@ namespace Fases {
 	class Fase:public Ente {
 	protected:
 		Listas::ListaEntidades lista_ents;
-		//GerenciadorColisoes GC;
+		Gerenciadores::GerenciadorColisoes GC;
 
 		//void criarInimFaceis();
 		//void criarPlataformas();
@@ -23,6 +24,6 @@ namespace Fases {
 	public:
 		Fase();
 		~Fase();
-		virtual void executar();
+		virtual void executar() = 0;
 	};
 }
