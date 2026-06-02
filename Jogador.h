@@ -6,9 +6,12 @@ namespace Entidades {
 		class Jogador:public Personagem {
 		protected:
 			int pontos; //talvez nem use?
-			bool noChao;
-			float timerPulo;
-			float tempoMaxPulo;
+			sf::Texture atacando;
+			float timer_pulo;
+			float tempo_pulo;
+			float timer_atk;
+			float tempo_atk;
+
 
 
 		public:
@@ -19,9 +22,9 @@ namespace Entidades {
 			void salvar();		
 			void mover();
 			void pular();
-			void setNoChao(bool b);
-			void setPosicaoY(float y);
 			void setpulo(float t);
+			void atacar();
+			
 		};
 	}
 }

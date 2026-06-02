@@ -26,5 +26,6 @@ namespace Fases {
 		Fase();
 		~Fase();
 		virtual void executar() = 0;
+		void transicaoTela(int qnt);
 	};
 }

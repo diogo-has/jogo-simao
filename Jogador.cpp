@@ -3,17 +3,27 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Jogador::Jogador(): timerPulo(1.f), tempoMaxPulo(.4f) {
+		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk) {
 			friccao = 0.99f;
+			imagem.loadFromFile("sprites/p1.png"); //Mudar qnd botar p2
+			atacando.loadFromFile("sprites/p1_atk.png");
+			sprite.setTexture(imagem);
+
+			calculaOrigemSprite();
 		}
 		Jogador::~Jogador() {
 		}
 		void Jogador::colidir(Inimigo* pIn) {
 		}
 		void Jogador::executar() {
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			if (timer_atk < tempo_atk) {
+				timer_atk += dt;
+				sprite.setTexture(atacando, true);
+			} else {
+				sprite.setTexture(imagem, true);
+			}
 			mover();
-			cout << "Vel y" << velocidade.y << endl;
-			cout << "acc y" << aceleracao.y << endl;
 		}
 		void Jogador::salvar() {
 		}
@@ -28,7 +38,7 @@ namespace Entidades {
 			//}
 			if (noChao)
 			{
-				timerPulo = 0.f;
+				timer_pulo = 0.f;
 			}
 			else {
 				//velocidade.y += 100; //solucao temporaria para o jogador estar "dentro" da plataforma
@@ -36,10 +46,10 @@ namespace Entidades {
 			velocidade += aceleracao * dt;
 			velocidade *= pow(1-friccao, dt);
 
-			if (aceleracao.x < 0)
-				espelhar(true);
-			else if (aceleracao.x > 0)
-				espelhar(false);
+			if (aceleracao.x > 0)
+				mudarDirecao(DIRECAO_DIREITA);
+			else if (aceleracao.x < 0)
+				mudarDirecao(DIRECAO_ESQUERDA);
 
 			
 
@@ -47,24 +57,18 @@ namespace Entidades {
 			sprite.setPosition(posicao);
 		}
 		void Jogador::pular() {
-			if (timerPulo <= tempoMaxPulo) {
-				velocidade.y = -1000.f;
-				timerPulo += Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			if (timer_pulo < tempo_pulo) {
+				velocidade.y = -700.f;
+				timer_pulo += Gerenciadores::GerenciadorGrafico::getDeltaTime();
 				noChao = false;
 			}
 		}
-		void Jogador::setNoChao(bool b)
-		{
-			noChao = b;
-		}
-		void Jogador::setPosicaoY(float y) //mudar nome?
-		{
-			posicao.y = y;
-			sprite.setPosition(posicao);
-		}
 		void Jogador::setpulo(float t)
 		{
-			timerPulo = t;
+			timer_pulo = t;
+		}
+		void Jogador::atacar() {
+			timer_atk = 0.f;
 		}
 	}
 }

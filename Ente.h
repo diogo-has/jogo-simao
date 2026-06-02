@@ -1,5 +1,7 @@
 #pragma once
 #include "GerenciadorGrafico.h"
+#define DIRECAO_DIREITA true
+#define DIRECAO_ESQUERDA false
 
 class Ente {
 protected:
@@ -7,6 +9,8 @@ protected:
 	static Gerenciadores::GerenciadorGrafico* pGG;
 	sf::Texture imagem;
 	sf::Sprite sprite;
+	bool direcao;
+	float escala;
 
 public:
 	Ente();
@@ -16,7 +20,10 @@ public:
 	void desenhar();
 
 	const sf::Sprite* getSprite();
-	void espelhar(bool esp);
+	void mudarDirecao(bool dir);
+	bool getDirecao();
+	void setEscala(float esc);
+	virtual void calculaOrigemSprite();
 
 	static void setGG(Gerenciadores::GerenciadorGrafico* pG);
 

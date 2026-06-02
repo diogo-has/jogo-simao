@@ -1,6 +1,6 @@
 #pragma once
 #include "Entidade.h"
-#include "Jogador.h"
+#include "Personagem.h"
 
 namespace Entidades {
 	class Chao :public Entidade {
@@ -9,7 +9,7 @@ namespace Entidades {
 		~Chao();
 
 		void executar();
-		void colidir(Personagens::Jogador* pJog);
+		void colidir(Personagens::Personagem* pP);
 		void salvar();
 	};
 }

@@ -56,9 +56,16 @@ namespace Gerenciadores {
 		}
 	}
 
-	void GerenciadorColisoes::tratarColisoesJogsChao() {
-		bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
-		if (colidiu) {
+	void GerenciadorColisoes::tratarColisoesChao() {
+		vector<Personagens::Inimigo*>::iterator it;
+		for (it = LIs.begin(); it != LIs.end(); it++) {
+			bool colidiuIni = verificarColisao(static_cast<Entidade*>(chao), static_cast<Entidade*>(*it));
+			if (colidiuIni)
+				chao->colidir(*it);
+		}
+
+		bool colidiuP1 = verificarColisao(static_cast<Entidade*>(chao), static_cast<Entidade*>(pJog1));
+		if (colidiuP1) {
 			chao->colidir(pJog1);
 		}
 		//bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(chao));
@@ -108,7 +115,7 @@ namespace Gerenciadores {
 
 	void GerenciadorColisoes::executar()
 	{
-		tratarColisoesJogsChao();
+		tratarColisoesChao();
 		tratarColisoesJogsInimigs();
 		tratarColisoesJogsObstacs();
 		tratarColisoesJogsProjeteis();

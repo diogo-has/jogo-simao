@@ -7,6 +7,7 @@
 #include "Macaco.h"
 #include "Cacador.h"
 #include "Chao.h"
+#include "Boitata.h"
 #include <iostream>
 
 
@@ -37,6 +38,11 @@ namespace Fases {
 		GC.incluirInimigo(m1);
 		GC.incluirInimigo(c1);
 		*/
+
+		Entidades::Personagens::Boitata* b1 = new Entidades::Personagens::Boitata();
+		b1->setPosicao({ 1200.f, 500.f });
+		lista_ents.incluir(b1);
+		GC.incluirInimigo(b1);
 
 	}
 	void FasePrimeira::criarObstaculos()

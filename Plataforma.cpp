@@ -19,7 +19,7 @@ namespace Entidades {
 		void Plataforma::obstaculizar(Personagens::Jogador* p) {
 			p->setNoChao(true);
 			p->setVelocidadeY(0.f);
-			p->setPosicaoY(sprite.getGlobalBounds().top);
+			//p->setPosicaoY(sprite.getGlobalBounds().top);
 
 			//p->setNoChao(true);
 

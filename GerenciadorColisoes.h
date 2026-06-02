@@ -30,7 +30,7 @@ namespace Gerenciadores {
 		void tratarColisoesJogsInimigs();
 		void tratarColisoesJogsObstacs();
 		void tratarColisoesJogsProjeteis();
-		void tratarColisoesJogsChao();
+		void tratarColisoesChao();
 
 	public:
 		GerenciadorColisoes();
