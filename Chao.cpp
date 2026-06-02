@@ -5,7 +5,7 @@ namespace Entidades {
 		imagem.loadFromFile("sprites/chao.png");
 		imagem.setRepeated(true);
 		sprite.setTexture(imagem);
-		sprite.setTextureRect(sf::IntRect(0, 0, LARGURA_TELA, imagem.getSize().y));
+		sprite.setTextureRect(sf::IntRect(0, 0, LARGURA_TELA*2, imagem.getSize().y));
 		setEscala(2);
 
 		sf::FloatRect bounds = sprite.getLocalBounds();

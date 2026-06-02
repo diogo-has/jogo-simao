@@ -19,6 +19,7 @@ namespace Fases {
 		void executar();
 		//void setJog(Personagens::Jogador* p);
 		
+		//funcao criar pra cada tipo d einimimgo
 	};
 }
 

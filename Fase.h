@@ -16,16 +16,19 @@ namespace Fases {
 		//void criarInimFaceis();
 		//void criarPlataformas();
 
+		//chamar pela construtora
 		virtual void criarInimigos() = 0;
 		virtual void criarObstaculos() = 0;
 		virtual void criarChao() = 0;
 		
 		void criarCenario();
+		void criarBoitatas();
 
 	public:
 		Fase();
 		~Fase();
 		virtual void executar() = 0;
 		void transicaoTela(int qnt);
+		
 	};
 }

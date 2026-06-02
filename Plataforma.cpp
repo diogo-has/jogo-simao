@@ -6,7 +6,8 @@ namespace Entidades {
 		Plataforma::Plataforma(float x, float y) : Obstaculo(x, y), altura(1) {
 			imagem.loadFromFile("sprites/plataforma.png"); //temporario
 			sprite.setTexture(imagem);
-			sprite.setScale(2, 2);
+			setEscala(1);
+			calculaOrigemSprite();
 			sprite.setPosition(x, y);
 		}
 
@@ -17,24 +18,19 @@ namespace Entidades {
 		void Plataforma::executar() { }
 
 		void Plataforma::obstaculizar(Personagens::Jogador* p) {
-			p->setNoChao(true);
-			p->setVelocidadeY(0.f);
-			//p->setPosicaoY(sprite.getGlobalBounds().top);
+			float topoPlataforma = sprite.getGlobalBounds().top;
+			float fundoPlataforma = topoPlataforma + sprite.getGlobalBounds().height;
 
-			//p->setNoChao(true);
+			if (p->getPosicao().y <= sprite.getGlobalBounds().top+10) {
+				p->setNoChao(true);
+				p->setVelocidadeY(0.f);
+				p->setPosicao({ p->getPosicao().x, topoPlataforma });
+			}
+			else if (p->getSprite()->getGlobalBounds().top >= sprite.getGlobalBounds().height) {
+				p->setVelocidadeY(0.f);
+				p->setPosicao({ p->getPosicao().x, (fundoPlataforma + p->getSprite()->getLocalBounds().height) });
+			}
 
-			//float topo =
-			//	sprite.getPosition().y -
-			//	sprite.getGlobalBounds().height / 2.f;
-
-			//float metadeJogador =
-			//	(p->getSprite()->getGlobalBounds().height / 2.f) - 15.f; // para o player ficar "dentro" da plataforma 15px
-
-			//float y = topo - metadeJogador;
-			//p->setAceleracaoY(0.f);
-			//p->setpulo(0.f);
-			////p->setPosicaoY(y);
-			//p->setVelocidadeY(0.f);
 		}
 
 		void Plataforma::salvar() { }

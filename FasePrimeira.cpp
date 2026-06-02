@@ -39,10 +39,7 @@ namespace Fases {
 		GC.incluirInimigo(c1);
 		*/
 
-		Entidades::Personagens::Boitata* b1 = new Entidades::Personagens::Boitata();
-		b1->setPosicao({ 1200.f, 500.f });
-		lista_ents.incluir(b1);
-		GC.incluirInimigo(b1);
+		
 
 	}
 	void FasePrimeira::criarObstaculos()
@@ -67,11 +64,14 @@ namespace Fases {
 		//plat1 = new Entidades::Obstaculos::Plataforma(400.f, 524.f);
 		//lista_ents.incluir(plat1);
 		//GC.incluirObstaculo(plat1);
+		Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(500.f, 250.f);
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(plat1));
+		GC.incluirObstaculo(plat1);
 
 	}
 	void FasePrimeira::criarChao() {
 		Entidades::Chao* chao = new Entidades::Chao();
-		lista_ents.incluir(chao);
+		lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
 		GC.setChao(chao);
 	}
 	void FasePrimeira::setpBackground(sf::Sprite* pb)
