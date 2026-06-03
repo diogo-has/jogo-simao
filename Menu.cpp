@@ -8,7 +8,7 @@ Menu::Menu() : Ente(), pJogo(NULL) {
 	sprite.setPosition(225.f, 255.f);
 }
 
-Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(215,225,400,85) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
+Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(215,64,400,145) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
 {
 	pJogo = pj;
 	imagem.loadFromFile("sprites/menu.png");
@@ -39,8 +39,7 @@ void Menu::verificaclique()
 	sf::Vector2i pixelPos = sf::Mouse::getPosition(*pGG->getJanela());
 	sf::Vector2f mundoPos = (*pGG->getJanela()).mapPixelToCoords(pixelPos);
 	if (hitbox_jogar.contains(mundoPos) ){
-		MenuSelecao* pm = new MenuSelecao(pJogo);
-		psel = static_cast<Menu*>(pm);
+		psel = new MenuSelecao(pJogo);
 		pJogo->setAtual(1);
 	}
 }
@@ -54,7 +53,7 @@ void Menu::mostrarhitboxes()
 	
 }
 
-Menu* Menu::getpsel() const
+MenuSelecao* Menu::getpsel() const
 {
 	if (psel) {
 		return psel;

@@ -4,6 +4,8 @@
 #include "Jogo.h"
 #include "Ente.h"
 
+class MenuSelecao;
+
 
 class Menu : public Ente {
 
@@ -12,7 +14,8 @@ class Menu : public Ente {
 		sf::FloatRect hitbox_jogar;
 		sf::RectangleShape shape;
 		//sf::FloatRect hitbox_opcoes;
-		Menu* psel; // temporario?
+	protected:
+		MenuSelecao* psel; // temporario?
 	public:
 		Menu();
 		Menu(Jogo* pj);
@@ -21,6 +24,6 @@ class Menu : public Ente {
 		void escolherfase();
 		void verificaclique();
 		void mostrarhitboxes();
-		Menu* getpsel() const;
+		MenuSelecao* getpsel() const;
 		
 };

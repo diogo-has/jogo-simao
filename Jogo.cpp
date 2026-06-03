@@ -7,6 +7,7 @@
 #include "Cacador.h"
 #include "Tronco.h"
 #include "FasePrimeira.h"
+#include "MenuSelecao.h"
 #include <iostream>
 using std::cout;
 using std::endl;
@@ -47,6 +48,18 @@ void Jogo::executar() {
                     gg.getJanela()->close();
                     break;
                 }
+            case sf::Event::MouseButtonPressed:
+                if (evento.mouseButton.button == sf::Mouse::Left){
+                    switch (atual) {
+                    case 0:
+                        menu.verificaclique();
+                        break;
+                    case 1:
+                        menu.getpsel()->verificarhitboxes();
+                        break;
+                    }
+                }
+
             }
         }
         pJog1.setAceleracaoX(0.f); // Reset de aceleração, melhor por em outro lugar
@@ -61,11 +74,7 @@ void Jogo::executar() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             //pJog1.setVelocidadeY(-500.f);
             pJog1.pular();
-        if (evento.type == sf::Event::MouseButtonPressed) {
-            if (evento.mouseButton.button == sf::Mouse::Left) {
-                menu.verificaclique();
-            }
-        }
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
             pJog1.atacar();
 
@@ -80,11 +89,12 @@ void Jogo::executar() {
             case 0:
                 cout << "executando menu" << endl;
                 menu.executar();
-                menu.mostrarhitboxes();
+                //menu.mostrarhitboxes();
                 
                 break;
             case 1:
                 menu.getpsel()->executar();
+                //menu.getpsel()->mostrarhitboxes();
                 break;
             case 2:
                 cout<< "aqui" << endl;

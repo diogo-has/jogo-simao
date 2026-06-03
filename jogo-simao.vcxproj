@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -162,6 +162,7 @@
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Macaco.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuSelecao.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Fireball.h" />
@@ -185,6 +186,7 @@
     <ClCompile Include="Macaco.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuSelecao.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Fireball.cpp" />
     <ClCompile Include="Plataforma.cpp" />
