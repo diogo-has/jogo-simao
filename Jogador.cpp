@@ -3,7 +3,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk) {
+		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), pulando(false) {
 			friccao = 0.99f;
 			imagem.loadFromFile("sprites/p1.png"); //Mudar qnd botar p2
 			atacando.loadFromFile("sprites/p1_atk.png");
@@ -55,18 +55,38 @@ namespace Entidades {
 
 			posicao += velocidade * dt;
 			sprite.setPosition(posicao);
+			cout << noChao << endl;
+			cout << pulando << endl;
+			cout << "=====" << endl;
 		}
-		void Jogador::pular() {
-			if (timer_pulo < tempo_pulo) {
-				velocidade.y = -700.f;
-				timer_pulo += Gerenciadores::GerenciadorGrafico::getDeltaTime();
+		void Jogador::iniciarPulo()
+		{
+			if (noChao && !pulando) {
+				pulando = true;
 				noChao = false;
+				timer_pulo = 0.f;
+				velocidade.y = -400.f;
 			}
 		}
-		void Jogador::setpulo(float t)
-		{
-			timer_pulo = t;
+
+		void Jogador::pular() {
+			if (!pulando) return;
+
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+
+			if (timer_pulo < tempo_pulo) {
+				velocidade.y = -700.f;
+				timer_pulo += dt;
+			}
+			else {
+				pulando = false;
+			}
 		}
+
+		void Jogador::setPulando(bool pulo) {
+			pulando = pulo;
+		}
+
 		void Jogador::atacar() {
 			timer_atk = 0.f;
 		}

@@ -7,6 +7,7 @@ namespace Entidades {
 		protected:
 			int pontos; //talvez nem use?
 			sf::Texture atacando;
+			bool pulando;
 			float timer_pulo;
 			float tempo_pulo;
 			float timer_atk;
@@ -21,8 +22,9 @@ namespace Entidades {
 			void executar();
 			void salvar();		
 			void mover();
+			void setPulando(bool pulo);
+			void iniciarPulo();
 			void pular();
-			void setpulo(float t);
 			void atacar();
 			
 		};

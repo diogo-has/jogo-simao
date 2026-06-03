@@ -20,15 +20,24 @@ namespace Entidades {
 		void Plataforma::obstaculizar(Personagens::Jogador* p) {
 			float topoPlataforma = sprite.getGlobalBounds().top;
 			float fundoPlataforma = topoPlataforma + sprite.getGlobalBounds().height;
+			float esquerdaPlataforma = sprite.getGlobalBounds().left;
+			float direitaPlataforma = esquerdaPlataforma + sprite.getGlobalBounds().width;
 
 			if (p->getPosicao().y <= sprite.getGlobalBounds().top+10) {
 				p->setNoChao(true);
 				p->setVelocidadeY(0.f);
 				p->setPosicao({ p->getPosicao().x, topoPlataforma });
 			}
-			else if (p->getSprite()->getGlobalBounds().top >= sprite.getGlobalBounds().height) {
+			else if (p->getSprite()->getGlobalBounds().top >= fundoPlataforma-10) {
+				p->setPulando(false);
 				p->setVelocidadeY(0.f);
-				p->setPosicao({ p->getPosicao().x, (fundoPlataforma + p->getSprite()->getLocalBounds().height) });
+				p->setPosicao({ p->getPosicao().x, (fundoPlataforma + p->getSprite()->getGlobalBounds().height) });
+			}
+			else if (p->getDirecao() == DIRECAO_DIREITA) {
+				p->setPosicao({ (esquerdaPlataforma - p->getSprite()->getGlobalBounds().width / 2), p->getPosicao().y });
+			}
+			else if (p->getDirecao() == DIRECAO_ESQUERDA) {
+				p->setPosicao({ (direitaPlataforma + p->getSprite()->getGlobalBounds().width / 2), p->getPosicao().y });
 			}
 
 		}

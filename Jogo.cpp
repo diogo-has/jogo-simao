@@ -46,6 +46,8 @@ void Jogo::executar() {
                 case sf::Keyboard::Escape:
                     gg.getJanela()->close();
                     break;
+                case sf::Keyboard::Up:
+                    pJog1.iniciarPulo();
                 }
             }
         }
@@ -61,6 +63,8 @@ void Jogo::executar() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             //pJog1.setVelocidadeY(-500.f);
             pJog1.pular();
+        else
+            pJog1.setPulando(false);
         if (evento.type == sf::Event::MouseButtonPressed) {
             if (evento.mouseButton.button == sf::Mouse::Left) {
                 menu.verificaclique();
