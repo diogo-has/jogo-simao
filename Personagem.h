@@ -19,6 +19,8 @@ namespace Entidades {
 			void setNoChao(bool b);
 			void setPosicao(sf::Vector2f pos);
 			sf::Vector2f getPosicao();
+			float getVelX() const;
+			float getVelY() const;
 		};
 	}
 }

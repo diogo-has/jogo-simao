@@ -1,21 +1,22 @@
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Boitata.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Boitata.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Cacador.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Cacador.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Chao.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Chao.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Ente.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Ente.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Entidade.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Entidade.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Fase.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Fase.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\FasePrimeira.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\FasePrimeira.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\GerenciadorColisoes.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\GerenciadorColisoes.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\GerenciadorGrafico.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\GerenciadorGrafico.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Inimigo.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Inimigo.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Jogador.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Jogador.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Jogo.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Jogo.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\ListaEntidades.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\ListaEntidades.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Macaco.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Macaco.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\main.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\main.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Menu.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Menu.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\MenuSelecao.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\MenuSelecao.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Personagem.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Personagem.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Fireball.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Fireball.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Plataforma.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Plataforma.obj
-C:\Users\aluno\Documents\jogo-simao\jogo-simao\Tronco.cpp;C:\Users\aluno\Documents\jogo-simao\jogo-simao\jogo-simao\x64\Release\Tronco.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Boitata.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Boitata.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Cacador.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Cacador.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Chao.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Chao.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Ente.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Ente.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Entidade.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Entidade.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Fase.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Fase.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\FasePrimeira.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\FasePrimeira.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Formigueiro.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Formigueiro.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\GerenciadorColisoes.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\GerenciadorColisoes.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\GerenciadorGrafico.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\GerenciadorGrafico.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Inimigo.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Inimigo.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Jogador.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Jogador.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Jogo.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Jogo.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\ListaEntidades.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\ListaEntidades.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Macaco.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Macaco.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\main.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\main.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Menu.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Menu.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\MenuSelecao.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\MenuSelecao.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Personagem.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Personagem.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Fireball.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Fireball.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Plataforma.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Plataforma.obj
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\Tronco.cpp;E:\Arquivos Gerais\Jogo-simao\jogo-simao\jogo-simao\x64\Release\Tronco.obj

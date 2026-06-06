@@ -3,7 +3,7 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk) {
+		Jogador::Jogador() : tempo_pulo(.4f), timer_pulo(tempo_pulo), tempo_atk(.7f), timer_atk(tempo_atk), cooldown_colisao(0.f), tempo_cooldown(1.f) {
 			friccao = 0.99f;
 			imagem.loadFromFile("sprites/p1.png"); //Mudar qnd botar p2
 			atacando.loadFromFile("sprites/p1_atk.png");
@@ -24,6 +24,20 @@ namespace Entidades {
 				sprite.setTexture(imagem, true);
 			}
 			mover();
+			if (cooldown_colisao > 0.f)
+			{
+				cooldown_colisao -= dt;
+			}
+			if (!podeColidir()) {
+				imagem.loadFromFile("sprites/p1damage.png");
+				sprite.setTexture(imagem);
+				
+			}
+			else {
+				imagem.loadFromFile("sprites/p1.png");
+				sprite.setTexture(imagem);
+			}
+			
 		}
 		void Jogador::salvar() {
 		}
@@ -36,6 +50,7 @@ namespace Entidades {
 			//	posicao.y = ALTURA_TELA - (sprite.getLocalBounds().height / 2.f);
 			//	timerPulo = 0.f;
 			//}
+			
 			if (noChao)
 			{
 				timer_pulo = 0.f;
@@ -70,5 +85,17 @@ namespace Entidades {
 		void Jogador::atacar() {
 			timer_atk = 0.f;
 		}
+
+		bool Jogador::podeColidir()
+		{
+			return cooldown_colisao <= 0.f;
+		}
+
+		void Jogador::ativarCooldown()
+		{
+			cooldown_colisao = tempo_cooldown;
+		}
+		
+	
 	}
 }

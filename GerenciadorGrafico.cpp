@@ -69,7 +69,11 @@ namespace Gerenciadores {
 	void GerenciadorGrafico::desenhaBackground(sf::Drawable* pObjeto)
 	{
 		if (pObjeto) {
+			janela.setView(janela.getDefaultView());
+
 			janela.draw(*pObjeto);
+
+			janela.setView(camera);
 		}
 	}
 

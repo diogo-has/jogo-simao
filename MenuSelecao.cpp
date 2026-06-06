@@ -1,7 +1,7 @@
 #include "MenuSelecao.h"
 
 MenuSelecao::MenuSelecao(Jogo* pj): 
-	Menu(pj), pJogo(pj), numbotoes(5), singleplayer(true), fase1(true), hitbox_players(52,143,700,60), hitbox_fase(52, 393,700,60)
+	Menu(pj), pJogo(pj), numbotoes(5), singleplayer(true), fase1(true), hitbox_players(52,143,700,60), hitbox_fase(52, 393,700,60), hitbox_iniciar(555,550,150,50)
 {
 	
 	imagem.loadFromFile("sprites/selfase.png");
@@ -25,12 +25,20 @@ void MenuSelecao::verificarhitboxes()
 	sf::Vector2f mundoPos = (*pGG->getJanela()).mapPixelToCoords(pixelPos);
 	if (hitbox_players.contains(mundoPos)) {
 		singleplayer = !singleplayer;
-		if (singleplayer) {
+		if (fase1 && singleplayer) {
 			imagem.loadFromFile("sprites/selfase.png");
 			sprite.setTexture(imagem);
 		}
-		else{
+		else if (!fase1 && singleplayer) {
+			imagem.loadFromFile("sprites/selfase-2-1.png");
+			sprite.setTexture(imagem);
+		}
+		else if (fase1 && !singleplayer) {
 			imagem.loadFromFile("sprites/selfase-1-2.png");
+			sprite.setTexture(imagem);
+		}
+		else if (!fase1 && !singleplayer) {
+			imagem.loadFromFile("sprites/selfase-2-2.png");
 			sprite.setTexture(imagem);
 		}
 	}
@@ -40,18 +48,21 @@ void MenuSelecao::verificarhitboxes()
 			imagem.loadFromFile("sprites/selfase.png");
 			sprite.setTexture(imagem);
 		}
-		else if (fase1 && !singleplayer) {
+		else if (!fase1 && singleplayer) {
 			imagem.loadFromFile("sprites/selfase-2-1.png");
 			sprite.setTexture(imagem);
 		}
-		else if (!fase1 && singleplayer) {
+		else if (fase1 && !singleplayer) {
 			imagem.loadFromFile("sprites/selfase-1-2.png");
 			sprite.setTexture(imagem);
 		}
-		else {
+		else if (!fase1 && !singleplayer) {
 			imagem.loadFromFile("sprites/selfase-2-2.png");
 			sprite.setTexture(imagem);
 		}
+	}
+	if (hitbox_iniciar.contains(mundoPos)) {
+		pJogo->setAtual(2);
 	}
 }
 void MenuSelecao::mostrarhitboxes() 
@@ -59,7 +70,12 @@ void MenuSelecao::mostrarhitboxes()
 	shapeplayers.setPosition(hitbox_players.left, hitbox_players.top);
 	shapeplayers.setSize(sf::Vector2f(hitbox_players.width, hitbox_players.height));
 	shapeplayers.setFillColor(sf::Color::Blue);
+	shapefase.setPosition(hitbox_fase.left, hitbox_fase.top);
+	shapefase.setSize(sf::Vector2f(hitbox_fase.width, hitbox_fase.height));
+	shapefase.setFillColor(sf::Color::Blue);
 	pGG->getJanela()->draw(shapeplayers);
+
+	pGG->getJanela()->draw(shapefase);
 }
 
 void MenuSelecao::mudartextura()

@@ -2,19 +2,21 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Cacador::Cacador() : Inimigo(), maldade(rand()%4 + 1)
+		Cacador::Cacador() : Inimigo(), maldade(rand()%5 + 1), timer_movimento(0.f), tempo_movimento(3.f)
 		{
+			imagem.loadFromFile("sprites/cacadordefault.png"); //temporario
+			sprite.setTexture(imagem);
+			sprite.setTextureRect(sf::IntRect(22, 5, 20, 50));
+			setEscala(3);
+			calculaOrigemSprite();
+			velocidade.x = 100.f;
 		}
 		Cacador::~Cacador()
 		{
 		}
 		void Cacador::executar()
 		{
-			imagem.loadFromFile("sprites/cacadordefault.png"); //temporario
-			sprite.setTexture(imagem);
-			sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
-			sprite.setScale(3, 3);
-			sprite.setPosition(500.f, 400.f); //mudar depois
+			mover();
 		}
 		
 		void Cacador::salvar()
@@ -22,12 +24,27 @@ namespace Entidades {
 		}
 		void Cacador::mover()
 		{
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			timer_movimento += dt;
+			if (timer_movimento >= tempo_movimento) {
+				velocidade.x *= -1;
+				mudarDirecao(!getDirecao());
+				timer_movimento = 0.f;
+			}
+
+			velocidade += aceleracao * dt;
+			posicao += velocidade * dt;
+			sprite.setPosition(posicao);
 		}
 		void Cacador::danificar(Jogador* p)
 		{
 		}
 		void Cacador::salvarDataBuffer()
 		{
+		}
+		sf::FloatRect Cacador::getHitbox()
+		{
+			return hitbox;
 		}
 	}
 }

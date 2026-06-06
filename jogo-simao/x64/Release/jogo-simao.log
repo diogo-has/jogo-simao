@@ -1,7 +1,9 @@
-﻿  MenuSelecao.cpp
+﻿  GerenciadorColisoes.cpp
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\GerenciadorColisoes.cpp(27,47): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+E:\Arquivos Gerais\Jogo-simao\jogo-simao\GerenciadorColisoes.cpp(51,46): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
   Gerando código
-  2 of 415 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+  5 of 449 functions ( 1.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finalizada a geração de código
-  jogo-simao.vcxproj -> C:\Users\aluno\Documents\jogo-simao\jogo-simao\x64\Release\jogo-simao.exe
+  jogo-simao.vcxproj -> E:\Arquivos Gerais\Jogo-simao\jogo-simao\x64\Release\jogo-simao.exe

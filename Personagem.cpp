@@ -19,5 +19,13 @@ namespace Entidades {
 		sf::Vector2f Personagem::getPosicao() {
 			return posicao;
 		}
+		float Personagem::getVelX() const
+		{
+			return velocidade.x;
+		}
+		float Personagem::getVelY() const
+		{
+			return velocidade.y;
+		}
 	}
 }

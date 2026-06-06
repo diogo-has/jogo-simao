@@ -6,9 +6,13 @@ namespace Fases {
 	class FasePrimeira:public Fase {
 	protected:
 		void criarInimigos();
+		void criarCacadores(); //imimigo medio
 		void criarObstaculos();
+		void criarFormigueiros();
 		void criarChao();
 		sf::Sprite* pBackground;
+		sf::Texture thud;
+		sf::Sprite HUD;
 		//Personagens::Jogador* pJogador;//nao sei se é assim que faz
 
 	public:

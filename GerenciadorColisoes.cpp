@@ -15,9 +15,23 @@ namespace Gerenciadores {
 		vector<Personagens::Inimigo*>::iterator it;
 		for (it = LIs.begin(); it != LIs.end(); it++) {
 			bool colidiuP1 = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
-			if (colidiuP1) {
-				//...
+			if (colidiuP1 && pJog1->podeColidir()) {
+				pJog1->ativarCooldown();
+				if (pJog1->getPosicao().y < (*it)->getPosicao().y) {
+					pJog1->setVelocidadeY(-400.f);
+
+					pJog1->setVelocidadeX((pJog1->getVelX() * -3.f));
+				
+				}
+				else if (pJog1->getVelX() > 50 || pJog1->getVelX() < -50) {
+					pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
+					pJog1->setVelocidadeY(-200.0);
+				}
+				else {
+					pJog1->setVelocidadeX((*it)->getVelX() * 2);
+				}
 			}
+		
 			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 			//if (colidiuP2) {
 			//	//...
@@ -28,11 +42,15 @@ namespace Gerenciadores {
 	void GerenciadorColisoes::tratarColisoesJogsObstacs()
 	{
 		list<Obstaculos::Obstaculo*>::iterator it;
+		float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
 		for (it = LOs.begin(); it != LOs.end(); it++) {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
-			if (colidiu) {
+			if (colidiu && pJog1->podeColidir()) {
+				
 				(*it)->obstaculizar(pJog1);
-				//...
+				pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
+				pJog1->setVelocidadeY(-200.0);
+				pJog1->ativarCooldown();
 			}
 			//bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 			//if (colidiuP2) {

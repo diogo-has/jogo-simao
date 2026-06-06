@@ -8,7 +8,7 @@ Menu::Menu() : Ente(), pJogo(NULL) {
 	sprite.setPosition(225.f, 255.f);
 }
 
-Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(215,64,400,145) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
+Menu::Menu(Jogo* pj): psel(NULL),hitbox_jogar(248,224,320,105) //hitbox_opcoes(0.f, 0.f, 200.f, 200.f) {
 {
 	pJogo = pj;
 	imagem.loadFromFile("sprites/menu.png");
