@@ -11,6 +11,7 @@ namespace Entidades {
 
 		protected:
 			int raiva;
+			bool vivo;
 
 		public:
 			Inimigo();
@@ -19,11 +20,6 @@ namespace Entidades {
 			virtual void danificar(Jogador* p) = 0;
 			virtual void salvar() = 0;
 			virtual void salvarDataBuffer() = 0;
-
-
-
-		
-
 		};
 	}
 }

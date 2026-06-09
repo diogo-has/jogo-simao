@@ -9,12 +9,15 @@
 #include "FasePrimeira.h"
 #include "MenuSelecao.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using std::cout;
 using std::endl;
 
 using Entidades::Personagens::Jogador;
 
 Jogo::Jogo() : gg(), pJog1(), atual(0) {
+    std::srand(std::time(nullptr));
     Ente::setGG(&gg);
     listaEnt.incluir(static_cast<Entidades::Entidade*>(&pJog1));
     executar();
@@ -84,7 +87,7 @@ void Jogo::executar() {
             }
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
             pJog1.atacar();
         }
         if (pJog1.getPosicao().x >= gg.getBordaCamera(LADO_DIREITO) && pJog1.getDirecao() == DIRECAO_DIREITA)
@@ -121,6 +124,7 @@ void Jogo::executar() {
         }
         gg.mostrar();
     }
+}
 
 void Jogo::setAtual(short int a)
 {

@@ -16,11 +16,30 @@ namespace Listas {
 		lista.incluir(pE);
 	}
 
+	void ListaEntidades::remover(Entidades::Entidade* pE) {
+		if (!pE) return;
+		lista.remover(pE);
+	}
+
 	void ListaEntidades::percorrer() {
-		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it;
-		for (it = lista.begin(); it != NULL; ++it) {
-			(*it)->gravitar();
-			(*it)->executar();
+		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it = lista.begin();
+		while (it != lista.end()) {
+			Entidades::Entidade* ent = *it;
+			if (!ent) {
+				++it;
+				continue;
+			}
+
+			if (!ent->getAtivo()) {
+				++it;
+				lista.remover(ent);
+				delete ent;
+			}
+			else {
+				ent->gravitar();
+				ent->executar();
+				++it;
+			}
 		}
 		//while (it != NULL) {
 		//	(*it)->executar();
@@ -31,7 +50,8 @@ namespace Listas {
 
 	void ListaEntidades::desenhar() {
 		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it;
-		for (it = lista.begin(); it != NULL; ++it) {
+		for (it = lista.begin(); it != lista.end(); ++it) {
+			if (!*it) continue;
 			(*it)->desenhar();
 		}
 	}

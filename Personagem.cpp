@@ -12,13 +12,6 @@ namespace Entidades {
 		void Personagem::setNoChao(bool b) {
 			noChao = b;
 		}
-		void Personagem::setPosicao(sf::Vector2f pos) {
-			posicao = pos;
-			sprite.setPosition(posicao);
-		}
-		sf::Vector2f Personagem::getPosicao() {
-			return posicao;
-		}
 		float Personagem::getVelX() const
 		{
 			return velocidade.x;

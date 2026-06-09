@@ -67,6 +67,9 @@
     <ClCompile Include="Formigueiro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boitata.h">

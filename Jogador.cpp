@@ -1,5 +1,7 @@
 #include "Jogador.h"
+#include "Inimigo.h"
 #include <math.h>
+#define OFFSET_HITBOX 80
 
 namespace Entidades {
 	namespace Personagens {
@@ -10,20 +12,54 @@ namespace Entidades {
 			sprite.setTexture(imagem);
 
 			calculaOrigemSprite();
+
+			hitbox.height = sprite.getGlobalBounds().height;
+			hitbox.width = sprite.getGlobalBounds().width - OFFSET_HITBOX;
 		}
 		Jogador::~Jogador() {
 		}
 		void Jogador::colidir(Inimigo* pIn) {
+			if (cooldown_colisao <= 0.f) {
+				if (timer_atk < tempo_atk) {
+					pIn->destruir();
+					return;
+				}
+				ativarCooldown();
+				if (num_vidas > 0) {
+					pIn->danificar(this);
+				}
+				if (posicao.y < pIn->getPosicao().y) {
+					velocidade.x *= -3.f;
+					velocidade.y = -400.f;
+		
+				}
+				else if (std::abs(velocidade.x) > 50) {
+					velocidade.x *= -2.f;
+					velocidade.y = -200.f;
+				}
+				else {
+					velocidade.x *= 2.f;
+				}
+			}
 		}
 		void Jogador::executar() {
 			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
 			if (timer_atk < tempo_atk) {
 				timer_atk += dt;
 				sprite.setTexture(atacando, true);
+				hitbox.width = sprite.getGlobalBounds().width - OFFSET_HITBOX/2;
 			} else {
 				sprite.setTexture(imagem, true);
+				hitbox.width = sprite.getGlobalBounds().width - OFFSET_HITBOX;
 			}
+
 			mover();
+			if (velocidade.y > 0)
+				noChao = false;
+
+			hitbox.left = sprite.getGlobalBounds().left + (OFFSET_HITBOX / 2);
+			hitbox.top = sprite.getGlobalBounds().top;
+
 			if (cooldown_colisao > 0.f)
 			{
 				cooldown_colisao -= dt;
@@ -103,6 +139,10 @@ namespace Entidades {
 
 		void Jogador::atacar() {
 			timer_atk = 0.f;
+		}
+
+		sf::FloatRect Jogador::getHitbox() {
+			return hitbox;
 		}
 
 		bool Jogador::podeColidir()

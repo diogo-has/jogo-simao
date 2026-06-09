@@ -2,14 +2,15 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Cacador::Cacador() : Inimigo(), maldade(rand()%5 + 1), timer_movimento(0.f), tempo_movimento(3.f)
+		Cacador::Cacador() : Inimigo(), maldade(rand()%5 + 1), timer_movimento(0.f), tempo_movimento(4.f)
 		{
 			imagem.loadFromFile("sprites/cacadordefault.png"); //temporario
 			sprite.setTexture(imagem);
 			sprite.setTextureRect(sf::IntRect(22, 5, 20, 50));
 			setEscala(3);
 			calculaOrigemSprite();
-			velocidade.x = 100.f;
+			velocidade.x = -100.f;
+			mudarDirecao(DIRECAO_ESQUERDA);
 		}
 		Cacador::~Cacador()
 		{

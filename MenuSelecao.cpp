@@ -77,8 +77,3 @@ void MenuSelecao::mostrarhitboxes()
 
 	pGG->getJanela()->draw(shapefase);
 }
-
-void MenuSelecao::mudartextura()
-{
-	
-}

@@ -12,9 +12,11 @@ diogo
 criar cpp separado da plataforma
 criar classe chao
 criar sistema da fase ser carregada por uma constante?
+ta dando uns erro no limpar qnd fecha o jogo
 
 
 tirar duvidas:
 gravitar na lista de entidades ou no executar?
-pode criar uma funcao separada na lista de entidades pra desenhar as coisas??
+pode criar uma funcao separada na lista de entidades pra desenhar as coisas?? ==não, redesenhar nas colisoes e pa
 tratar colisao chao no gc
+metodo static pra deletar entidades

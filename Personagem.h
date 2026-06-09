@@ -17,8 +17,6 @@ namespace Entidades {
 			virtual void salvar() = 0;
 			virtual void mover() = 0;
 			void setNoChao(bool b); //ver se é utilizado
-			void setPosicao(sf::Vector2f pos);
-			sf::Vector2f getPosicao();
 			float getVelX() const;
 			float getVelY() const;
 			void tomarDano(int d = 0);

@@ -15,6 +15,7 @@ namespace Fases {
 	
 	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2)
 	{
+		tamanho = 7;
 		GC.setJogadores(pj1, pj2);
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj2));
@@ -25,7 +26,8 @@ namespace Fases {
 		imagem.loadFromFile("sprites/background.png");
 		imagem.setRepeated(true);
 		background.setTexture(imagem);
-		background.setPosition(-800.f, 0.f);
+		background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
+		background.setPosition(0.f, 0.f);
 		thud.loadFromFile("sprites/3hearts.png");
 		HUD.setTexture(thud);
 		HUD.setPosition(20.f, 20.f);
@@ -58,14 +60,31 @@ namespace Fases {
 	}
 	void FasePrimeira::criarCacadores()
 	{
-		Entidades::Personagens::Cacador* c1 = new Entidades::Personagens::Cacador;
-		c1->setPosicao({ 400.f, 200.f });
-		lista_ents.incluir(static_cast<Entidades::Entidade*>(c1));
-		GC.incluirInimigo(c1);
+		int qntCacadores = MIN_RAND_ENTIDADES + (std::rand() % (maxCacadores - MIN_RAND_ENTIDADES + 1));
+
+		int qnt_lugares = tamanho;
+		set<int> lugares;
+		while (lugares.size() < qntCacadores) {
+			int lugarCacador = std::rand() % (qnt_lugares - 1);
+			lugares.insert(lugarCacador);
+		}
+		set<int>::iterator it;
+		for (it = lugares.begin(); it != lugares.end(); it++) {
+			Entidades::Personagens::Cacador* c = new Entidades::Personagens::Cacador;
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(c));
+			GC.incluirInimigo(c);
+			c->setPosicao({ 700.f + ((*it) * LARGURA_TELA), 200.f });
+		}
+
+		//Entidades::Personagens::Cacador* c1 = new Entidades::Personagens::Cacador;
+		//c1->setPosicao({ 400.f, 200.f });
+		//lista_ents.incluir(static_cast<Entidades::Entidade*>(c1));
+		//GC.incluirInimigo(c1);
 	}
 	void FasePrimeira::criarObstaculos()
 	{
 		criarFormigueiros();
+		criarPlataformas();
 		//Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma;
 		
 		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco;
@@ -86,9 +105,10 @@ namespace Fases {
 		//plat1 = new Entidades::Obstaculos::Plataforma(400.f, 524.f);
 		//lista_ents.incluir(plat1);
 		//GC.incluirObstaculo(plat1);
-		Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(500.f, 250.f);
-		lista_ents.incluir(static_cast<Entidades::Entidade*>(plat1));
-		GC.incluirObstaculo(plat1);
+
+		//Entidades::Obstaculos::Plataforma* plat1 = new Entidades::Obstaculos::Plataforma(500.f, 320.f);
+		//lista_ents.incluir(static_cast<Entidades::Entidade*>(plat1));
+		//GC.incluirObstaculo(plat1);
 
 	}
 	void FasePrimeira::criarFormigueiros()
@@ -99,6 +119,7 @@ namespace Fases {
 	}
 	void FasePrimeira::criarChao() {
 		Entidades::Chao* chao = new Entidades::Chao();
+		chao->setTamanho(tamanho);
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
 		GC.setChao(chao);
 	}

@@ -5,7 +5,8 @@
 namespace Fases {
 	class FasePrimeira:public Fase {
 	private:
-		const int maxCacadores = 1;
+		const int maxCacadores = 4;
+		
 	protected:
 		void criarInimigos();
 		void criarCacadores(); //imimigo medio

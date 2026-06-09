@@ -102,7 +102,12 @@ namespace Gerenciadores {
 
 	void GerenciadorGrafico::resetCamera()
 	{
-		camera.setCenter({ 400,300 });
+		//camera.setCenter({ 400,300 });
+		camera_inicio = camera.getCenter();
+		camera_alpha = 0.0f;
+		camera_destino.x = 400;
+		camera_velocidade = 5.f;
+		camera_movendo = true;
 	}
    
 }

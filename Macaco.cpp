@@ -2,14 +2,14 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Macaco::Macaco():Inimigo(), tamanho(raiva), timer_movimento(0.f), tempo_movimento(3.f)
+		Macaco::Macaco():Inimigo(), tamanho(raiva), timer_movimento(0.f), tempo_movimento(1.8f)
 		{
 			imagem.loadFromFile("sprites/evilmonkeydefault.png"); //temporario
 			sprite.setTexture(imagem);
 			//sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 			sprite.setPosition(0, 0);
-			sprite.setOrigin(28, 16);
 			setEscala(3.5);
+			calculaOrigemSprite();
 			velocidade.x = 100.f;
 		}
 		Macaco::~Macaco()

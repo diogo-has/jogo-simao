@@ -36,6 +36,7 @@ namespace Gerenciadores {
 		GerenciadorColisoes();
 		~GerenciadorColisoes();
 		void incluirInimigo(Personagens::Inimigo* pi);
+		void removerInimigo(Personagens::Inimigo* pi);
 		void incluirObstaculo(Obstaculos::Obstaculo* po);
 		void incluirProjetil(Fireball* pp);
 		void setChao(Chao* pc);

@@ -1,5 +1,6 @@
 #pragma once
 #include "Personagem.h"
+
 namespace Entidades {
 	namespace Personagens {
 		class Inimigo; //talvez mude pra include
@@ -14,6 +15,7 @@ namespace Entidades {
 			float tempo_atk;
 			float cooldown_colisao;
 			float tempo_cooldown;
+			sf::FloatRect hitbox;
 
 
 
@@ -28,7 +30,7 @@ namespace Entidades {
 			void iniciarPulo();
 			void pular();
 			void atacar();
-			sf::FloatRect getHitbox();
+			sf::FloatRect getHitbox() override;
 			bool podeColidir();
 			void ativarCooldown();
 			
