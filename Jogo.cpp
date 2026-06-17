@@ -8,14 +8,18 @@
 #include "Tronco.h"
 #include "MenuSelecao.h"
 #include <iostream>
-#include <cstdlib>
 #include <ctime>
+
+
 using std::cout;
 using std::endl;
+using std::cin;
 
 using Entidades::Personagens::Jogador;
-
+ 
 Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr) {
+    cout << "Digite o nome do jogador: ";
+    cin >> nomeJogador;
     std::srand(std::time(nullptr));
     Ente::setGG(&gg);
     executar();
@@ -24,7 +28,9 @@ Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr) {
 Jogo::~Jogo() {}
 
 void Jogo::executar() {
+
     Menu menu(this);
+    
 
     while (gg.janelaAberta()) {
         gg.atualizarDeltaTime();
@@ -115,6 +121,20 @@ void Jogo::executar() {
                 setAtual(4);
             pJog1.setPosicao({ 100.f, 100.f });
             gg.resetCamera();
+        }
+
+        // Fim do jogo
+        if (pFase2 && pJog1.getPosicao().x >= 4850.f) {
+            cout << "GANHOU!!!" << endl;
+            gg.resetCamera();
+            setAtual(0);
+            pJog1.setVidas(3); // temporario
+            pJog1.setPosicao({ 20, 200 }); //temporario
+            pJog1.setVelocidadeX(0);//temporario
+            if (pJog2) {
+                delete pJog2;
+                pJog2 = nullptr;
+            }
         }
 
             
@@ -213,6 +233,11 @@ void Jogo::setAtual(short int a)
             pFase1->encerrar(&pJog1, pJog2);
             delete pFase1;
             pFase1 = nullptr;
+        }
+        if (pFase2) {
+            pFase2->encerrar(&pJog1, pJog2);
+            delete pFase2;
+            pFase2 = nullptr;
         }
         if (a == 2) {
             pFase1 = new Fases::FasePrimeira(&pJog1);

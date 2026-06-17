@@ -52,27 +52,24 @@ namespace Fases {
 
 	}
 	void FaseSegunda::criarBoitatas() {
-		Entidades::Personagens::Boitata* b = new Entidades::Personagens::Boitata;
-		lista_ents.incluir(static_cast<Entidades::Entidade*>(b));
-		GC.incluirInimigo(b);
-		b->setPosicao({ 700.f, 200.f });
-		b->setRaiva((std::rand() % 4) + 1);
-		LBs.insert(b);
-		//int qntCacadores = MIN_RAND_ENTIDADES + (std::rand() % (maxCacadores - MIN_RAND_ENTIDADES + 1));
+		int qntBoitatas = MIN_RAND_ENTIDADES + (std::rand() % (maxBoitatas - MIN_RAND_ENTIDADES + 1));
 
-		//int qnt_lugares = tamanho;
-		//set<int> lugares;
-		//while (lugares.size() < qntCacadores) {
-		//	int lugarCacador = std::rand() % qnt_lugares;
-		//	lugares.insert(lugarCacador);
-		//}
-		//set<int>::iterator it;
-		//for (it = lugares.begin(); it != lugares.end(); it++) {
-		//	Entidades::Personagens::Cacador* c = new Entidades::Personagens::Cacador;
-		//	lista_ents.incluir(static_cast<Entidades::Entidade*>(c));
-		//	GC.incluirInimigo(c);
-		//	c->setPosicao({ 700.f + ((*it) * LARGURA_TELA), 200.f });
-		//}
+		int qnt_lugares = tamanho;
+		set<int> lugares;
+		while (lugares.size() < qntBoitatas) {
+			int lugarBoitata = std::rand() % qnt_lugares;
+			lugares.insert(lugarBoitata);
+		}
+		set<int>::iterator it;
+		for (it = lugares.begin(); it != lugares.end(); it++) {
+			Entidades::Personagens::Boitata* b = new Entidades::Personagens::Boitata;
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(b));
+			GC.incluirInimigo(b);
+			LBs.insert(b);
+			b->setPosicao({ 700.f, 200.f });
+			b->setRaiva((std::rand() % 4) + 1);
+			b->setPosicao({ 700.f + ((*it) * LARGURA_TELA), 200.f });
+		}
 	}
 	void FaseSegunda::criarObstaculos() {
 		criarTroncos();
@@ -80,21 +77,29 @@ namespace Fases {
 
 	}
 	void FaseSegunda::criarTroncos() {
-		//int qntFormigueiros = MIN_RAND_ENTIDADES + (std::rand() % (maxFormigueiros - MIN_RAND_ENTIDADES + 1));
+		//Entidades::Obstaculos::Tronco* t1 = new Entidades::Obstaculos::Tronco();
+		//t1->setPosicao({ 500.f, 520.f });
+		//t1->setTipo(std::rand() % 2);
+		//lista_ents.incluir(static_cast<Entidades::Entidade*>(t1));
+		//GC.incluirObstaculo(t1);
 
-		//int qnt_lugares = tamanho;
-		//set<int> lugares;
-		//while (lugares.size() < qntFormigueiros) {
-		//	int lugarFormigueiro = std::rand() % qnt_lugares;
-		//	lugares.insert(lugarFormigueiro);
-		//}
-		//set<int>::iterator it;
-		//for (it = lugares.begin(); it != lugares.end(); it++) {
-		//	Entidades::Obstaculos::Formigueiro* f = new Entidades::Obstaculos::Formigueiro;
-		//	lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
-		//	GC.incluirObstaculo(f);
-		//	f->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 447.f });
-		//}
+
+		int qntTroncos = MIN_RAND_ENTIDADES + (std::rand() % (maxTroncos - MIN_RAND_ENTIDADES + 1));
+
+		int qnt_lugares = tamanho;
+		set<int> lugares;
+		while (lugares.size() < qntTroncos) {
+			int lugarTronco = std::rand() % qnt_lugares;
+			lugares.insert(lugarTronco);
+		}
+		set<int>::iterator it;
+		for (it = lugares.begin(); it != lugares.end(); it++) {
+			Entidades::Obstaculos::Tronco* t = new Entidades::Obstaculos::Tronco();
+			lista_ents.incluir(static_cast<Entidades::Entidade*>(t));
+			GC.incluirObstaculo(t);
+			t->setTipo(std::rand() % 2);
+			t->setPosicao({ (200.f + (std::rand() % 401)) + ((*it) * LARGURA_TELA), 520.f });
+		}
 	}
 
 	void FaseSegunda::criarFireballs()
@@ -103,11 +108,13 @@ namespace Fases {
 		for (it = LBs.begin(); it != LBs.end(); it++) {
 			bool direcaoB = (*it)->getDirecao();
 			sf::Vector2f posicaoB = (*it)->getPosicao();
+
 			Entidades::Fireball* f = new Entidades::Fireball;
 			f->setPosicao({posicaoB.x + 100.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1), posicaoB.y - 50.f});
 			f->mudarDirecao(direcaoB);
 			f->setVelocidadeX(500.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1));
 			f->setTamanho((*it)->getInflamabilidade());
+
 			lista_ents.incluir(static_cast<Entidades::Fireball*>(f));
 			GC.incluirProjetil(f);
 		}
@@ -119,6 +126,13 @@ namespace Fases {
 		if (timer_fireball >= tempo_fireball) {
 			criarFireballs();
 			timer_fireball = 0.f;
+		}
+		set<Entidades::Personagens::Boitata*>::iterator it;
+		for (it = LBs.begin(); it != LBs.end();) {
+			if (!(*it)->getVivo())
+				it = LBs.erase(it);
+			else
+				it++;
 		}
 
 		pGG->desenhaBackground(&background);

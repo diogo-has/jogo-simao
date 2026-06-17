@@ -6,6 +6,7 @@
 #include "ListaEntidades.h" //temporario
 #include "FasePrimeira.h"
 #include "FaseSegunda.h"
+#include <string>
 
 class Jogo {
 private:
@@ -15,6 +16,7 @@ private:
 	short int atual; // 0: Menu; 1: MenuSelecao; 2: GameOver ; 3: 1 player fase 1; 4: 2 players fase 1; 5: 1 player fase 2; 6: 2 players fase 2
 	Fases::FasePrimeira* pFase1;
 	Fases::FaseSegunda* pFase2;
+	std::string nomeJogador;
 
 public:
 	Jogo();

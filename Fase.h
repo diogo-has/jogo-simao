@@ -41,7 +41,7 @@ namespace Fases {
 		virtual void executar() = 0;
 		void transicaoTela(int qnt);
 		void encerrar(Personagens::Jogador* pJog1, Personagens::Jogador* pJog2 = nullptr);
-		void removerJogador2(Personagens::Jogador* pJog);
+		void removerJogadorDois(Personagens::Jogador* pJog);
 		void atualizaHUDP1(int vidas);
 		void atualizaHUDP2(int vidas);
 		

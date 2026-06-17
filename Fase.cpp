@@ -44,7 +44,7 @@ namespace Fases {
 		set<int> lugares;
 
 		while (lugares.size() < qntPlataformas) {
-			int lugarPlataforma = std::rand() % (qnt_lugares + 1);
+			int lugarPlataforma = std::rand() % (qnt_lugares);
 			lugares.insert(lugarPlataforma);
 		}
 
@@ -57,7 +57,7 @@ namespace Fases {
 				(100.f + (std::rand() % 601)) + ((*it) * LARGURA_TELA),
 				0
 			});
-			p->setAltura(230 + (std::rand() % 91));
+			p->setAltura(250 + (std::rand() % 91));
 		}
 	}
 	void Fase::criarCenario()
@@ -91,7 +91,7 @@ namespace Fases {
 			GC.setJogador(2, nullptr);
 		}
 	}
-	void Fase::removerJogador2(Personagens::Jogador* pJog) {
+	void Fase::removerJogadorDois(Personagens::Jogador* pJog) {
 		if (pJog) {
 			pJog->destruir();
 			GC.setJogador(2, nullptr);
