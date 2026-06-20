@@ -1,5 +1,6 @@
 #pragma once
 #include "Inimigo.h"
+#include "Fireball.h"
 
 namespace Entidades {
 	namespace Personagens {
@@ -8,6 +9,8 @@ namespace Entidades {
 			int inflamabilidade; //determina o tamanho do projétil
 			float timer_movimento;
 			float tempo_movimento;
+			Fireball* pFireball;
+
 		public:
 			Boitata();
 			~Boitata();
@@ -15,8 +18,8 @@ namespace Entidades {
 			void salvar();
 			void mover();
 			void danificar(Jogador* p);
-			void lancarProjetil();
 			void salvarDataBuffer();
+			int getInflamabilidade();
 		};
 	}
 }

@@ -62,7 +62,20 @@ void MenuSelecao::verificarhitboxes()
 		}
 	}
 	if (hitbox_iniciar.contains(mundoPos)) {
-		pJogo->setAtual(2);
+		if (singleplayer && fase1) {
+			pJogo->setAtual(2);
+		}
+		else if (!singleplayer && fase1) {
+			pJogo->setAtual(3);
+		}
+		else if (singleplayer && !fase1) {
+			pJogo->setAtual(4);
+		}
+		else if (!singleplayer && !fase1) {
+			pJogo->setAtual(5);
+		}
+
+		
 	}
 }
 void MenuSelecao::mostrarhitboxes() 

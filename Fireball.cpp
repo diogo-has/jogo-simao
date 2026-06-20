@@ -1,13 +1,15 @@
 #include "Fireball.h"
+#include "Boitata.h"
 
 namespace Entidades{
-	Fireball::Fireball() : Entidade(), tamanho(1)
+	Fireball::Fireball() : Entidade(), tamanho(4), timer_vida(0.f), tempo_vida(0.8f)
 	{
-
-	}
-	Fireball::Fireball(int tam) : Entidade(), tamanho(tam)
-	{
-
+		imagem.loadFromFile("sprites/FireballFinal.png"); //temporario
+		sprite.setTexture(imagem);
+		sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
+		sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
+		setEscala(tamanho);
+		sofre_gravidade = true;
 	}
 	Fireball::~Fireball() 
 	{
@@ -15,11 +17,14 @@ namespace Entidades{
 	}
 	void Fireball::executar()
 	{
-		imagem.loadFromFile("sprites/FireballFinal.png"); //temporario
-		sprite.setTexture(imagem);
-		sprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
-		sprite.setScale(4, 4);
-		//sprite.setPosition(400.f, 400.f);
+		float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+		timer_vida += dt;
+		if (timer_vida >= tempo_vida) {
+			vivo = false;
+		}
+		velocidade += aceleracao * dt;
+		posicao += velocidade * dt;
+		sprite.setPosition(posicao);
 	}
 	void Fireball::salvar()
 	{
@@ -27,6 +32,12 @@ namespace Entidades{
 	}
 	void Fireball::salvarDataBuffer()
 	{
+
+	}
+	void Fireball::setTamanho(int tam)
+	{
+		setEscala(tam);
+		tamanho = tam;
 
 	}
 }

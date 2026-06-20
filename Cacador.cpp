@@ -43,6 +43,7 @@ namespace Entidades {
 		}
 		void Cacador::salvarDataBuffer()
 		{
+
 		}
 		
 	}

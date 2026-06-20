@@ -41,7 +41,7 @@ namespace Gerenciadores {
 		void incluirProjetil(Fireball* pp);
 		void setChao(Chao* pc);
 		void executar();
-		void setJogadores(Personagens::Jogador* pj1, Personagens::Jogador* pj2 = nullptr);
+		void setJogador(int nJog, Personagens::Jogador* pJog);
 
 	};
 }

@@ -1,7 +1,7 @@
 #include "Entidade.h"
 
 namespace Entidades {
-	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), sofre_gravidade(false), ativo(true) {
+	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), sofre_gravidade(false), vivo(true) {
 
 	}
 	Entidade::~Entidade() {
@@ -12,10 +12,10 @@ namespace Entidades {
 		aceleracao.y = 2000.f;
 	}
 	void Entidade::destruir() {
-		ativo = false;
+		vivo = false;
 	}
-	bool Entidade::getAtivo() {
-		return ativo;
+	bool Entidade::getVivo() {
+		return vivo;
 	}
 	void Entidade::setVelocidadeX(float vx) {
 		velocidade.x = vx;

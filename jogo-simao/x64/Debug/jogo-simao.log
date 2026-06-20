@@ -1,22 +1,17 @@
-﻿Plataforma.obj : error LNK2005: "public: __cdecl Entidades::Obstaculos::Obstaculo::Obstaculo(float,float)" (??0Obstaculo@Obstaculos@Entidades@@QEAA@MM@Z) já definida no Obstaculo.obj
-Plataforma.obj : error LNK2005: "public: __cdecl Entidades::Obstaculos::Obstaculo::Obstaculo(void)" (??0Obstaculo@Obstaculos@Entidades@@QEAA@XZ) já definida no Obstaculo.obj
-Plataforma.obj : error LNK2005: "public: virtual __cdecl Entidades::Obstaculos::Obstaculo::~Obstaculo(void)" (??1Obstaculo@Obstaculos@Entidades@@UEAA@XZ) já definida no Obstaculo.obj
-Tronco.obj : error LNK2005: "public: __cdecl Entidades::Obstaculos::Obstaculo::Obstaculo(void)" (??0Obstaculo@Obstaculos@Entidades@@QEAA@XZ) já definida no Obstaculo.obj
-Tronco.obj : error LNK2005: "public: virtual __cdecl Entidades::Obstaculos::Obstaculo::~Obstaculo(void)" (??1Obstaculo@Obstaculos@Entidades@@UEAA@XZ) já definida no Obstaculo.obj
-FasePrimeira.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Gerenciadores::GerenciadorGrafico::desenhaHUD(class sf::Drawable *)" (?desenhaHUD@GerenciadorGrafico@Gerenciadores@@QEAAXPEAVDrawable@sf@@@Z), referenciado na função "public: virtual void __cdecl Fases::FasePrimeira::executar(void)" (?executar@FasePrimeira@Fases@@UEAAXXZ)
-FasePrimeira.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Entidade::setPosicao(class sf::Vector2<float>)" (?setPosicao@Entidade@Entidades@@QEAAXV?$Vector2@M@sf@@@Z), referenciado na função "protected: void __cdecl Fases::FasePrimeira::criarCacadores(void)" (?criarCacadores@FasePrimeira@Fases@@IEAAXXZ)
-Jogo.obj : error LNK2001: símbolo externo não resolvido "public: void __cdecl Entidades::Entidade::setPosicao(class sf::Vector2<float>)" (?setPosicao@Entidade@Entidades@@QEAAXV?$Vector2@M@sf@@@Z)
-FasePrimeira.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Chao::setTamanho(int)" (?setTamanho@Chao@Entidades@@QEAAXH@Z), referenciado na função "protected: virtual void __cdecl Fases::FasePrimeira::criarChao(void)" (?criarChao@FasePrimeira@Fases@@MEAAXXZ)
-FasePrimeira.obj : error LNK2019: símbolo externo não resolvido, "protected: void __cdecl Fases::Fase::criarMacacos(void)" (?criarMacacos@Fase@Fases@@IEAAXXZ), referenciado na função "protected: virtual void __cdecl Fases::FasePrimeira::criarInimigos(void)" (?criarInimigos@FasePrimeira@Fases@@MEAAXXZ)
-FasePrimeira.obj : error LNK2019: símbolo externo não resolvido, "protected: void __cdecl Fases::Fase::criarPlataformas(void)" (?criarPlataformas@Fase@Fases@@IEAAXXZ), referenciado na função "protected: virtual void __cdecl Fases::FasePrimeira::criarObstaculos(void)" (?criarObstaculos@FasePrimeira@Fases@@MEAAXXZ)
-Formigueiro.obj : error LNK2001: símbolo externo não resolvido "public: virtual class sf::Rect<float> __cdecl Entidades::Entidade::getHitbox(void)" (?getHitbox@Entidade@Entidades@@UEAA?AV?$Rect@M@sf@@XZ)
-Obstaculo.obj : error LNK2001: símbolo externo não resolvido "public: virtual class sf::Rect<float> __cdecl Entidades::Entidade::getHitbox(void)" (?getHitbox@Entidade@Entidades@@UEAA?AV?$Rect@M@sf@@XZ)
-Formigueiro.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Personagens::Personagem::tomarDano(int)" (?tomarDano@Personagem@Personagens@Entidades@@QEAAXH@Z), referenciado na função "public: virtual void __cdecl Entidades::Obstaculos::Formigueiro::obstaculizar(class Entidades::Personagens::Jogador *)" (?obstaculizar@Formigueiro@Obstaculos@Entidades@@UEAAXPEAVJogador@Personagens@3@@Z)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Gerenciadores::GerenciadorGrafico::resetCamera(void)" (?resetCamera@GerenciadorGrafico@Gerenciadores@@QEAAXXZ), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: class sf::Vector2<float> __cdecl Entidades::Entidade::getPosicao(void)" (?getPosicao@Entidade@Entidades@@QEAA?AV?$Vector2@M@sf@@XZ), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: int __cdecl Entidades::Personagens::Personagem::getVidas(void)const " (?getVidas@Personagem@Personagens@Entidades@@QEBAHXZ), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Personagens::Personagem::setVidas(int)" (?setVidas@Personagem@Personagens@Entidades@@QEAAXH@Z), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Personagens::Jogador::setPulando(bool)" (?setPulando@Jogador@Personagens@Entidades@@QEAAX_N@Z), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: void __cdecl Entidades::Personagens::Jogador::iniciarPulo(void)" (?iniciarPulo@Jogador@Personagens@Entidades@@QEAAXXZ), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-Jogo.obj : error LNK2019: símbolo externo não resolvido, "public: class MenuSelecao * __cdecl Menu::getpsel(void)const " (?getpsel@Menu@@QEBAPEAVMenuSelecao@@XZ), referenciado na função "public: void __cdecl Jogo::executar(void)" (?executar@Jogo@@QEAAXXZ)
-C:\Users\aluno\Desktop\jogo-simao\x64\Debug\jogo-simao.exe : fatal error LNK1120: 14 externo não resolvidos
+﻿  Boitata.cpp
+  Fase.cpp
+  FasePrimeira.cpp
+  FaseSegunda.cpp
+  GerenciadorColisoes.cpp
+C:\Users\Diogo\Desktop\jogo-simao\GerenciadorColisoes.cpp(63,46): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Diogo\Desktop\jogo-simao\GerenciadorColisoes.cpp(72,47): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+  Jogo.cpp
+C:\Users\Diogo\Desktop\jogo-simao\Jogo.cpp(23,25): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+  main.cpp
+  Menu.cpp
+  MenuSelecao.cpp
+  Fireball.cpp
+C:\Users\Diogo\Desktop\jogo-simao\Fireball.cpp(11,13): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Diogo\Desktop\jogo-simao\Fireball.cpp(39,13): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+  Gerando Código...
+  jogo-simao.vcxproj -> C:\Users\Diogo\Desktop\jogo-simao\x64\Debug\jogo-simao.exe

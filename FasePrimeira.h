@@ -6,29 +6,20 @@ namespace Fases {
 	class FasePrimeira:public Fase {
 	private:
 		const int maxCacadores;
-		const int maxFormigueiros;
+		const int maxTroncos;
 		
 	protected:
-		sf::Sprite background;
-		sf::Texture thud;
-		sf::Sprite HUD;
 		void criarInimigos();
 		void criarCacadores(); //imimigo medio
 		void criarObstaculos();
-		void criarFormigueiros();
-		void criarChao();
-
-		//Personagens::Jogador* pJogador;//nao sei se é assim que faz
+		void criarTroncos();
+		//void criarFormigueiros();
 
 	public:
 		FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr);
 		~FasePrimeira();
-		void desenharbackground();
 		void executar();
-		void atualizaHUD(int v);
-		//void setJog(Personagens::Jogador* p);
-		
-		//funcao criar pra cada tipo d einimimgo
+
 	};
 }
 

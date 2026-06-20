@@ -29,6 +29,16 @@ namespace Entidades {
 	}
 	void Chao::salvar() {
 	}
+	void Chao::setTipo(int tipo) {
+		if (tipo == 1) {
+			imagem.loadFromFile("sprites/chao.png");
+			sprite.setTexture(imagem);
+		}
+		else if (tipo == 2) {
+			imagem.loadFromFile("sprites/chao_fase2.png");
+			sprite.setTexture(imagem);
+		}
+	}
 }
 
 

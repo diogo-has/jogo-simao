@@ -2,20 +2,22 @@
 
 namespace Entidades {
 	namespace Personagens {
-		Boitata::Boitata() : Inimigo(), inflamabilidade(rand() % 5 + 1), timer_movimento(0.f), tempo_movimento(3.f) {
+		Boitata::Boitata() : Inimigo(), inflamabilidade(raiva), timer_movimento(0.f), tempo_movimento(3.f) {
 			imagem.loadFromFile("sprites/Boitatafinal.png");
 			sprite.setTexture(imagem);
 			sprite.setTextureRect(sf::IntRect(0, 0, 64, 52));
 			setEscala(2);
 			calculaOrigemSprite();
-			velocidade.x = 100.f;
+			velocidade.x = -100.f;
+			mudarDirecao(DIRECAO_ESQUERDA);
 		}
 		Boitata::~Boitata()
 		{
 		}
 		void Boitata::executar()
 		{
-			
+			inflamabilidade = raiva;
+
 			//sprite.setPosition(400.f, 400.f);
 			mover();
 		}
@@ -31,6 +33,8 @@ namespace Entidades {
 				velocidade.x *= -1;
 				mudarDirecao(!getDirecao());
 				timer_movimento = 0.f;
+				
+
 			}
 
 			velocidade += aceleracao * dt;
@@ -41,14 +45,13 @@ namespace Entidades {
 		{
 			p->tomarDano(1);
 		}
-		void Boitata::lancarProjetil()
-		{
-			//new projetil(inflamabilidade)
-			//projetil executar
-		}
 		void Boitata::salvarDataBuffer()
 		{
 
+		}
+		int Boitata::getInflamabilidade()
+		{
+			return inflamabilidade;
 		}
 	}
 }

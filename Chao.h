@@ -12,6 +12,7 @@ namespace Entidades {
 		void colidir(Personagens::Personagem* pP);
 		void setTamanho(int tam);
 		void salvar();
+		void setTipo(int tipo);
 	};
 }
 

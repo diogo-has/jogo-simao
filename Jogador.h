@@ -1,13 +1,17 @@
 #pragma once
 #include "Personagem.h"
 
+#define JOGADOR_1 true
+#define JOGADOR_2 false
+
 namespace Entidades {
 	namespace Personagens {
-		class Inimigo; //talvez mude pra include
+		class Inimigo;
 		class Jogador:public Personagem {
 		protected:
-			int pontos; //talvez nem use?
+			int pontos;
 			sf::Texture atacando;
+			sf::Texture dano;
 			bool pulando;
 			float timer_pulo;
 			float tempo_pulo;
@@ -16,6 +20,7 @@ namespace Entidades {
 			float cooldown_colisao;
 			float tempo_cooldown;
 			sf::FloatRect hitbox;
+			bool jog1;
 
 
 
@@ -33,6 +38,8 @@ namespace Entidades {
 			sf::FloatRect getHitbox() override;
 			bool podeColidir();
 			void ativarCooldown();
+			void setJog(bool jog);
+			int getPontos();
 			
 		};
 	}

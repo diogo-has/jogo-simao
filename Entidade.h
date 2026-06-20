@@ -11,7 +11,7 @@ namespace Entidades {
 		sf::Vector2f aceleracao;
 		//std::ostream buffer;
 		bool sofre_gravidade;
-		bool ativo;
+		bool vivo;
 		void salvarDataBuffer();
 
 	public:
@@ -22,7 +22,7 @@ namespace Entidades {
 		virtual void salvar() = 0;
 		void gravitar();
 		void destruir();
-		bool getAtivo();
+		bool getVivo();
 		virtual void setVelocidadeX(float vx);
 		virtual void setVelocidadeY(float vy);
 		virtual void setAceleracaoX(float ax);
