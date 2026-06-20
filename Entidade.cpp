@@ -1,7 +1,7 @@
 #include "Entidade.h"
 
 namespace Entidades {
-	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), sofre_gravidade(false) {
+	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), sofre_gravidade(false), vivo(true) {
 
 	}
 	Entidade::~Entidade() {
@@ -10,6 +10,12 @@ namespace Entidades {
 	void Entidade::gravitar() {
 		if (!sofre_gravidade) return;
 		aceleracao.y = 2000.f;
+	}
+	void Entidade::destruir() {
+		vivo = false;
+	}
+	bool Entidade::getVivo() {
+		return vivo;
 	}
 	void Entidade::setVelocidadeX(float vx) {
 		velocidade.x = vx;
@@ -22,5 +28,16 @@ namespace Entidades {
 	}
 	void Entidade::setAceleracaoY(float ay) {
 		aceleracao.y = ay;
+	}
+	void Entidade::setPosicao(sf::Vector2f pos) {
+		posicao = pos;
+		sprite.setPosition(posicao);
+		desenhar();
+	}
+	sf::Vector2f Entidade::getPosicao() {
+		return posicao;
+	}
+	sf::FloatRect Entidade::getHitbox() {
+		return sprite.getGlobalBounds();
 	}
 }

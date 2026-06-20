@@ -6,9 +6,8 @@ namespace Entidades {
         class Tronco : public Obstaculo
         {
             private:
-                int vida;
-                int estagio; // 0: inteiro; 1: pouco quebrado; 2: muito quebrado; 3: quebrado (invisivel e sem colisao); talvez mudar visualmente para indicar os estagios?
-                bool quebrado;
+                int tipo;
+                sf::Texture imagem2;
             public:
                 Tronco();
                 ~Tronco();
@@ -16,6 +15,7 @@ namespace Entidades {
                 void obstaculizar(Personagens::Jogador* p);//TODO
                 void salvar();//TODO
                 void salvarDataBuffer();
+                void setTipo(int t);
         };
 
     }

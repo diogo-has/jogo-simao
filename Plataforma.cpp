@@ -3,19 +3,29 @@
 namespace Entidades {
 	namespace Obstaculos {
 
+		/*
 		Plataforma::Plataforma(float x, float y) : Obstaculo(x, y), altura(1) {
-			imagem.loadFromFile("sprites/plataforma.png"); //temporario
+			imagem.loadFromFile("sprites/plataforma.png");
 			sprite.setTexture(imagem);
 			setEscala(1);
 			calculaOrigemSprite();
 			sprite.setPosition(x, y);
 		}
+		*/
 
-		Plataforma::Plataforma() : Obstaculo(), altura(1) { }
+		Plataforma::Plataforma() : Obstaculo(), altura(1) {
+			imagem.loadFromFile("sprites/plataforma.png");
+			sprite.setTexture(imagem);
+			setEscala(1);
+			calculaOrigemSprite();
+		}
 
 		Plataforma::~Plataforma() { }
 
-		void Plataforma::executar() { }
+		void Plataforma::executar() {
+			posicao = { posicao.x, (float)altura };
+			sprite.setPosition(posicao);
+		}
 
 		void Plataforma::obstaculizar(Personagens::Jogador* p) {
 			float topoPlataforma = sprite.getGlobalBounds().top;
@@ -31,29 +41,22 @@ namespace Entidades {
 			else if (p->getSprite()->getGlobalBounds().top >= fundoPlataforma-10) {
 				p->setPulando(false);
 				p->setVelocidadeY(0.f);
-				p->setPosicao({ p->getPosicao().x, (fundoPlataforma + p->getSprite()->getGlobalBounds().height) });
+				p->setPosicao({ p->getPosicao().x, (fundoPlataforma + p->getHitbox().height)});
 			}
-			else if (p->getDirecao() == DIRECAO_DIREITA) {
-				p->setPosicao({ (esquerdaPlataforma - p->getSprite()->getGlobalBounds().width / 2), p->getPosicao().y });
+			else if (p->getPosicao().x < sprite.getPosition().x) {
+				p->setPosicao({ (esquerdaPlataforma - p->getHitbox().width / 2), p->getPosicao().y });
 			}
-			else if (p->getDirecao() == DIRECAO_ESQUERDA) {
-				p->setPosicao({ (direitaPlataforma + p->getSprite()->getGlobalBounds().width / 2), p->getPosicao().y });
+			else if (p->getPosicao().x > sprite.getPosition().x) {
+				p->setPosicao({ (direitaPlataforma + p->getHitbox().width / 2), p->getPosicao().y });
 			}
-
-			//float topo =
-			//	sprite.getPosition().y -
-			//	sprite.getGlobalBounds().height / 2.f;
-
-			//float metadeJogador =
-			//	(p->getSprite()->getGlobalBounds().height / 2.f) - 15.f; // para o player ficar "dentro" da plataforma 15px
-
-			//float y = topo - metadeJogador;
-			//p->setAceleracaoY(0.f);
-			////p->setPosicaoY(y);
-			//p->setVelocidadeY(0.f);
 		}
 
 		void Plataforma::salvar() { }
+
+		void Plataforma::setAltura(int a)
+		{
+			altura = a;
+		}
 
 	}
 }

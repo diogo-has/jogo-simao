@@ -9,7 +9,7 @@ namespace Entidades {
 		private:
 			int altura;
 		public:
-			Plataforma(float x, float y);
+			//Plataforma(float x, float y);
 
 			Plataforma();
 
@@ -18,6 +18,7 @@ namespace Entidades {
 			void executar();
 			void obstaculizar(Personagens::Jogador* p);
 			void salvar();
+			void setAltura(int a);
 
 		};
 	}

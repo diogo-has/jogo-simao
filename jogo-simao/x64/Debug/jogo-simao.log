@@ -1,3 +1,17 @@
-﻿  main.cpp
-  LINK : C:\Users\aluno\Desktop\jogo-simao\x64\Debug\jogo-simao.exe não encontrado ou não compilado pelo o último link incremental; executando link completo
-  jogo-simao.vcxproj -> C:\Users\aluno\Desktop\jogo-simao\x64\Debug\jogo-simao.exe
+﻿  Boitata.cpp
+  Fase.cpp
+  FasePrimeira.cpp
+  FaseSegunda.cpp
+  GerenciadorColisoes.cpp
+C:\Users\Diogo\Desktop\jogo-simao\GerenciadorColisoes.cpp(63,46): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+C:\Users\Diogo\Desktop\jogo-simao\GerenciadorColisoes.cpp(72,47): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+  Jogo.cpp
+C:\Users\Diogo\Desktop\jogo-simao\Jogo.cpp(23,25): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+  main.cpp
+  Menu.cpp
+  MenuSelecao.cpp
+  Fireball.cpp
+C:\Users\Diogo\Desktop\jogo-simao\Fireball.cpp(11,13): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Diogo\Desktop\jogo-simao\Fireball.cpp(39,13): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+  Gerando Código...
+  jogo-simao.vcxproj -> C:\Users\Diogo\Desktop\jogo-simao\x64\Debug\jogo-simao.exe

@@ -34,7 +34,12 @@ bool Ente::getDirecao() {
 
 void Ente::setEscala(float esc) {
 	escala = esc;
-	sprite.setScale(escala, escala);
+	if (direcao == DIRECAO_DIREITA) {
+		sprite.setScale(escala, escala);
+	}
+	else {
+		sprite.setScale(-escala, escala);
+	}
 }
 
 void Ente::calculaOrigemSprite() {

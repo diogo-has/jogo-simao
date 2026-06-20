@@ -6,9 +6,6 @@ namespace Entidades {
 	namespace Personagens {
 		class Inimigo:public Personagem
 		{
-		private:
-			static int cont;
-
 		protected:
 			int raiva;
 
@@ -19,11 +16,7 @@ namespace Entidades {
 			virtual void danificar(Jogador* p) = 0;
 			virtual void salvar() = 0;
 			virtual void salvarDataBuffer() = 0;
-
-
-
-		
-
+			void setRaiva(int r);
 		};
 	}
 }

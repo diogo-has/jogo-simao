@@ -19,10 +19,7 @@ namespace Listas {
 					~Elemento() { }
 					void setProx(Elemento<TE>* pE)
 					{
-						if (pE)
-						{
-							pProx = pE;
-						}
+						pProx = pE;
 					}
 					Elemento<TE>* getProx() const { return pProx; }
 					void setInfo(TE* pi)
@@ -52,11 +49,16 @@ namespace Listas {
                     {
                         return atual == pe;
                     }
-
                     bool operator!=(const Elemento<TE>* pe) const
                     {
                         return !(atual == pe);
                     }
+					bool operator==(const Iterator<TE>& outro) const {
+						return atual == outro.atual;
+					}
+					bool operator!=(const Iterator<TE>& outro) const {
+						return atual != outro.atual;
+					}
                     void operator=(Elemento<TE>* pe)
                     {
 						atual = pe;
@@ -100,6 +102,35 @@ namespace Listas {
 						}
 					}
 					else { return; }
+				}
+				void remover(TL* pElem) {
+					if (!pElem || !pPrim) return;
+
+					Elemento<TL>* aux = pPrim;
+					Elemento<TL>* ant = NULL;
+
+					while (aux != NULL && aux->getInfo() != pElem) {
+						ant = aux;
+						aux = aux->getProx();
+					}
+
+					if (aux == NULL) return;
+
+
+					if (aux == pPrim) {
+						pPrim = aux->getProx();
+					}
+					else {
+
+						ant->setProx(aux->getProx());
+					}
+
+					if (aux == pUlt) {
+						pUlt = ant;
+					}
+
+					tam--;
+					delete aux;
 				}
 				void limpar()
 				{

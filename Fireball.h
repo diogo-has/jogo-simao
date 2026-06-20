@@ -2,18 +2,23 @@
 #include "Entidade.h"
 
 namespace Entidades {
+    class Boitata;
     class Fireball : public Entidade
     {
         protected:
             bool ativo;
             int tamanho;
+            float timer_vida;
+            float tempo_vida;
+            Boitata* pBoitata;
+
         public:
             Fireball();
-            Fireball(int tam = 1);
             ~Fireball();
             void executar();
             void salvar();//TODO
             void salvarDataBuffer();
+            void setTamanho(int tam);
     };
 }
 

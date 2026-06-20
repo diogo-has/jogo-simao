@@ -2,17 +2,12 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		Formigueiro::Formigueiro(float x, float y) : Obstaculo(x, y), dano(1) 
+
+		Formigueiro::Formigueiro() : Obstaculo(), dano(1) 
 		{ 
 			danoso = true;
 			imagem.loadFromFile("sprites/Formigueiro.png"); //temporario
 			sprite.setTexture(imagem);
-			sprite.setPosition(x, y);
-		}
-
-		Formigueiro::Formigueiro() : Obstaculo(), dano(1) 
-		{ 
-			danoso = true; 
 		}
 
 		Formigueiro::~Formigueiro()
@@ -26,7 +21,13 @@ namespace Entidades {
 
 		void Formigueiro::obstaculizar(Personagens::Jogador* p)
 		{
-			p->tomarDano(dano);
+			if (p->podeColidir() && danoso) {
+				p->tomarDano(dano);
+				p->ativarCooldown();
+				p->setVelocidadeX((p->getVelX()) * (-2.0));
+				p->setVelocidadeY(-200.0);
+			}
+			
 		}
 
 		void Formigueiro::salvar()

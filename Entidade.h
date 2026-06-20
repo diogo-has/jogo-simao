@@ -1,6 +1,7 @@
 #pragma once
 #include "Ente.h"
 #include <ostream>
+#define MIN_RAND_ENTIDADES 3
 
 namespace Entidades {
 	class Entidade:public Ente {
@@ -10,6 +11,7 @@ namespace Entidades {
 		sf::Vector2f aceleracao;
 		//std::ostream buffer;
 		bool sofre_gravidade;
+		bool vivo;
 		void salvarDataBuffer();
 
 	public:
@@ -19,10 +21,15 @@ namespace Entidades {
 		virtual void executar() = 0;
 		virtual void salvar() = 0;
 		void gravitar();
+		void destruir();
+		bool getVivo();
 		virtual void setVelocidadeX(float vx);
 		virtual void setVelocidadeY(float vy);
 		virtual void setAceleracaoX(float ax);
 		virtual void setAceleracaoY(float ay);
+		void setPosicao(sf::Vector2f pos);
+		sf::Vector2f getPosicao();
+		virtual sf::FloatRect getHitbox();
 		
 	};
 }

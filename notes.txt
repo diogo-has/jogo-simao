@@ -9,12 +9,21 @@ salvar de todos
 salvardatabuffer de todos
 
 diogo
-criar cpp separado da plataforma
-criar classe chao
-criar sistema da fase ser carregada por uma constante?
+OK criar cpp separado da plataforma
+OK criar classe chao
+criar sistema da fase ser carregada por uma constante? - nao precisa
+ta dando uns erro no limpar qnd fecha o jogo
+fazer inimigo spawnar em cima de plataforma
 
+implementar melhor funcionalidade do nivel de maldade (raiva)
+talvez influenciar no danificar
+
+implementar vidas dos inimigos
+fazer a forca de empuxo da plataforma
 
 tirar duvidas:
 gravitar na lista de entidades ou no executar?
-pode criar uma funcao separada na lista de entidades pra desenhar as coisas??
+pode criar uma funcao separada na lista de entidades pra desenhar as coisas?? ==não, redesenhar nas colisoes e pa
 tratar colisao chao no gc
+
+ta desenhando duas vezes

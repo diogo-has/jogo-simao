@@ -7,7 +7,6 @@ namespace Entidades {
 			private:
 				int dano;
 			public:
-				Formigueiro(float x, float y);
 				Formigueiro();
 				~Formigueiro();
 				void executar();
