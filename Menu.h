@@ -18,14 +18,14 @@ class Menu : public Ente {
 		sf::FloatRect hitbox_ranking;
 		sf::RectangleShape shape_ranking;
 	protected:
-		MenuSelecao* psel; // temporario?
+		Menu* psel; // temporario?
 	public:
 		Menu();
 		Menu(Jogo* pj);
 		~Menu();
-		void executar();
-		void verificaclique();
+		virtual void executar();
+		virtual void verificaclique();
 		void mostrarhitboxes();
-		MenuSelecao* getpsel() const;
+		Menu* getpsel() const;
 		
 };

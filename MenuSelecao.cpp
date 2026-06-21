@@ -19,7 +19,7 @@ void MenuSelecao::executar()
 	desenhar();
 }
 
-void MenuSelecao::verificarhitboxes()
+void MenuSelecao::verificaclique()
 {
 	sf::Vector2i pixelPos = sf::Mouse::getPosition(*pGG->getJanela());
 	sf::Vector2f mundoPos = (*pGG->getJanela()).mapPixelToCoords(pixelPos);

@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "MenuSelecao.h"
+#include "MenuRanking.h"
 
 Menu::Menu() : Ente(), pJogo(NULL) {
 	imagem.loadFromFile("sprites/jogar.png");
@@ -39,7 +40,8 @@ void Menu::verificaclique()
 	sf::Vector2i pixelPos = sf::Mouse::getPosition(*pGG->getJanela());
 	sf::Vector2f mundoPos = (*pGG->getJanela()).mapPixelToCoords(pixelPos);
 	if (hitbox_jogar.contains(mundoPos) ){
-		psel = new MenuSelecao(pJogo);
+		MenuSelecao* pMenuSel = new MenuSelecao(pJogo);
+		psel = static_cast<Menu*>(pMenuSel);
 		pJogo->setAtual(1);
 	}
 	if (hitbox_carregar.contains(mundoPos)) {
@@ -47,6 +49,10 @@ void Menu::verificaclique()
 	}
 	if (hitbox_ranking.contains(mundoPos)) {
 		cout << "Mostrar ranking" << endl;
+		MenuRanking* pMenuRank = new MenuRanking(pJogo);
+		psel = static_cast<Menu*>(pMenuRank);
+		pJogo->setAtual(1);
+		
 	}
 }
 
@@ -68,7 +74,7 @@ void Menu::mostrarhitboxes()
 	pGG->getJanela()->draw(shape_ranking);
 }
 
-MenuSelecao* Menu::getpsel() const
+Menu* Menu::getpsel() const
 {
 	if (psel) {
 		return psel;

@@ -17,6 +17,8 @@ private:
 	Fases::FasePrimeira* pFase1;
 	Fases::FaseSegunda* pFase2;
 	std::string nomeJogador;
+	void inserirRanking(std::string nome, int pontos);
+	bool pausado;
 
 public:
 	Jogo();

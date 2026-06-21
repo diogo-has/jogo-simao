@@ -73,6 +73,9 @@
     <ClCompile Include="FaseSegunda.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MenuRanking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boitata.h">
@@ -145,6 +148,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FaseSegunda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuRanking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

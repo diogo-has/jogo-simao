@@ -17,7 +17,7 @@ class MenuSelecao : public Menu
 		MenuSelecao(Jogo* pj);
 		~MenuSelecao();
 		void executar();
-		void verificarhitboxes();
+		void verificaclique();
 		void mostrarhitboxes();
 };
 

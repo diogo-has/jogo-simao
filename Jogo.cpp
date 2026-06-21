@@ -16,10 +16,44 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::ofstream;
+using std::ifstream;
 
 using Entidades::Personagens::Jogador;
  
-Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr) {
+void Jogo::inserirRanking(std::string nome, int pontos) {
+    struct JogadorRanking {
+        int pontuacao;
+        std::string nome;
+    };
+
+    vector<JogadorRanking> ranking;
+
+    std::ifstream arquivoLeitura("rankFile.dat");
+    if (arquivoLeitura.is_open()) {
+        JogadorRanking j;
+        while (arquivoLeitura >> j.pontuacao) {
+            arquivoLeitura >> std::ws;
+            std::getline(arquivoLeitura, j.nome);
+            ranking.push_back(j);
+        }
+        arquivoLeitura.close();
+    }
+
+    auto it = ranking.begin();
+    while (it != ranking.end() && it->pontuacao >= pontos) {
+        ++it;
+    }
+
+    ranking.insert(it, { pontos, nome });
+
+    std::ofstream arquivoEscrita("rankFile.dat");
+    for (const auto& jog : ranking) {
+        arquivoEscrita << jog.pontuacao << " " << jog.nome << "\n";
+    }
+    arquivoEscrita.close();
+}
+
+Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr), pFase2(nullptr), pausado(false) {
     cout << "Digite o nome do jogador: ";
     cin >> nomeJogador;
     std::srand(std::time(nullptr));
@@ -50,6 +84,9 @@ void Jogo::executar() {
                 case sf::Keyboard::Escape:
                     gg.getJanela()->close();
                     break;
+                case sf::Keyboard::P:
+                    pausado = !pausado;
+                    break;
                 case sf::Keyboard::Up:
                     pJog1.iniciarPulo();
                     break;
@@ -65,7 +102,7 @@ void Jogo::executar() {
                         menu.verificaclique();
                         break;
                     case 1:
-                        menu.getpsel()->verificarhitboxes();
+                        menu.getpsel()->verificaclique();
                         break;
                     }
                 }
@@ -134,9 +171,8 @@ void Jogo::executar() {
             pJog1.setPosicao({ 20, 200 }); //temporario
             pJog1.setVelocidadeX(0);//temporario
 
-            ofstream rankFile("rankFile.dat");
-            rankFile << nomeJogador << " " << pJog1.getPontos() << endl;
-            rankFile.close();
+            int pontos = pJog1.getPontos() + (pJog2 ? pJog2->getPontos() : 0);
+            inserirRanking(nomeJogador, pontos);
 
             if (pJog2) {
                 delete pJog2;
@@ -146,88 +182,91 @@ void Jogo::executar() {
 
             
         gg.limpar();
-        switch (atual) {
-            case 0:
-                //cout << "executando menu" << endl;
-                menu.executar();
-                //menu.mostrarhitboxes();
-                
-                break;
-            case 1:
-                menu.getpsel()->executar();
-                //menu.getpsel()->mostrarhitboxes();
-                break;
-            case 2:
-                if (pJog1.getVidas() <= 0) {
-                    cout << "indo para o menu" << endl;
-                    gg.resetCamera();
-                    setAtual(0);
-                    pJog1.setVidas(3); // temporario
-                    pJog1.setPosicao({ 20, 200 }); //temporario
-                    pJog1.setVelocidadeX(0);//temporario
-                    break;
-                }
-                pFase1->atualizaHUDP1(pJog1.getVidas());
-                pFase1->executar();
-                break;
-            case 3:
-                if (pJog1.getVidas() <= 0) {
-                    cout << "indo para o menu" << endl;
-                    gg.resetCamera();
-                    setAtual(0);
-                    pJog1.setVidas(3); // temporario
-                    pJog1.setPosicao({ 20, 200 }); //temporario
-                    pJog1.setVelocidadeX(0);//temporario
-                    delete pJog2;
-                    pJog2 = nullptr;
-                    break;
-                }
-                pFase1->atualizaHUDP1(pJog1.getVidas());
-                if (pJog2) {
-                    pFase1->atualizaHUDP2(pJog2->getVidas());
-                    if (pJog2->getVidas() <= 0) {
-                        pFase1->encerrar(nullptr, pJog2);
-                        pJog2 = nullptr;
-                    }
-                }
-                pFase1->executar();
-                break;
-            case 4:
-                if (pJog1.getVidas() <= 0) {
-                    cout << "indo para o menu" << endl;
-                    gg.resetCamera();
-                    setAtual(0);
-                    pJog1.setVidas(3); // temporario
-                    pJog1.setPosicao({ 20, 200 }); //temporario
-                    pJog1.setVelocidadeX(0);//temporario
-                    break;
-                }
-                pFase2->atualizaHUDP1(pJog1.getVidas());
-                pFase2->executar();
-                break;
-            case 5:
-                if (pJog1.getVidas() <= 0) {
-                    cout << "indo para o menu" << endl;
-                    gg.resetCamera();
-                    setAtual(0);
-                    pJog1.setVidas(3); // temporario
-                    pJog1.setPosicao({ 20, 200 }); //temporario
-                    pJog1.setVelocidadeX(0);//temporario
-                    delete pJog2;
-                    pJog2 = nullptr;
-                    break;
-                }
-                pFase2->atualizaHUDP1(pJog1.getVidas());
-                if (pJog2) {
-                    pFase2->atualizaHUDP2(pJog2->getVidas());
-                    if (pJog2->getVidas() <= 0) {
-                        pFase2->encerrar(nullptr, pJog2);
-                        pJog2 = nullptr;
-                    }
-                }
-                pFase2->executar();
-                break;
+        if (!pausado) {
 
+            switch (atual) {
+                case 0:
+                    //cout << "executando menu" << endl;
+                    menu.executar();
+                    //menu.mostrarhitboxes();
+                
+                    break;
+                case 1:
+                    menu.getpsel()->executar();
+                    //menu.getpsel()->mostrarhitboxes();
+                    break;
+                case 2:
+                    if (pJog1.getVidas() <= 0) {
+                        cout << "indo para o menu" << endl;
+                        gg.resetCamera();
+                        setAtual(0);
+                        pJog1.setVidas(3); // temporario
+                        pJog1.setPosicao({ 20, 200 }); //temporario
+                        pJog1.setVelocidadeX(0);//temporario
+                        break;
+                    }
+                    pFase1->atualizaHUDP1(pJog1.getVidas());
+                    pFase1->executar();
+                    break;
+                case 3:
+                    if (pJog1.getVidas() <= 0) {
+                        cout << "indo para o menu" << endl;
+                        gg.resetCamera();
+                        setAtual(0);
+                        pJog1.setVidas(3); // temporario
+                        pJog1.setPosicao({ 20, 200 }); //temporario
+                        pJog1.setVelocidadeX(0);//temporario
+                        delete pJog2;
+                        pJog2 = nullptr;
+                        break;
+                    }
+                    pFase1->atualizaHUDP1(pJog1.getVidas());
+                    if (pJog2) {
+                        pFase1->atualizaHUDP2(pJog2->getVidas());
+                        if (pJog2->getVidas() <= 0) {
+                            pFase1->encerrar(nullptr, pJog2);
+                            pJog2 = nullptr;
+                        }
+                    }
+                    pFase1->executar();
+                    break;
+                case 4:
+                    if (pJog1.getVidas() <= 0) {
+                        cout << "indo para o menu" << endl;
+                        gg.resetCamera();
+                        setAtual(0);
+                        pJog1.setVidas(3); // temporario
+                        pJog1.setPosicao({ 20, 200 }); //temporario
+                        pJog1.setVelocidadeX(0);//temporario
+                        break;
+                    }
+                    pFase2->atualizaHUDP1(pJog1.getVidas());
+                    pFase2->executar();
+                    break;
+                case 5:
+                    if (pJog1.getVidas() <= 0) {
+                        cout << "indo para o menu" << endl;
+                        gg.resetCamera();
+                        setAtual(0);
+                        pJog1.setVidas(3); // temporario
+                        pJog1.setPosicao({ 20, 200 }); //temporario
+                        pJog1.setVelocidadeX(0);//temporario
+                        delete pJog2;
+                        pJog2 = nullptr;
+                        break;
+                    }
+                    pFase2->atualizaHUDP1(pJog1.getVidas());
+                    if (pJog2) {
+                        pFase2->atualizaHUDP2(pJog2->getVidas());
+                        if (pJog2->getVidas() <= 0) {
+                            pFase2->encerrar(nullptr, pJog2);
+                            pJog2 = nullptr;
+                        }
+                    }
+                    pFase2->executar();
+                    break;
+
+            }
         }
         gg.mostrar();
     }
@@ -235,7 +274,7 @@ void Jogo::executar() {
 
 void Jogo::setAtual(short int a)
 {
-    if (a >= 0 && a <= 5) {
+    if (a >= 0 && a <= 6) {
         if (pFase1) {
             pFase1->encerrar(&pJog1, pJog2);
             delete pFase1;

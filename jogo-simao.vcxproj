@@ -163,6 +163,7 @@
     <ClInclude Include="ListaEntidades.h" />
     <ClInclude Include="Macaco.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuRanking.h" />
     <ClInclude Include="MenuSelecao.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
@@ -189,6 +190,7 @@
     <ClCompile Include="Macaco.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuRanking.cpp" />
     <ClCompile Include="MenuSelecao.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
