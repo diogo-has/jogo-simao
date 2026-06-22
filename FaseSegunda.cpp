@@ -10,11 +10,14 @@
 #include "Chao.h"
 #include "Fireball.h"
 #include <iostream>
+#include <string>
+
+using std::string;
 
 
 namespace Fases {
 
-	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxBoitatas(4), maxFormigueiros(6), tempo_fireball(2.f), timer_fireball(0.f) {
+	FaseSegunda::FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2, bool carregada) : maxBoitatas(4), maxFormigueiros(6), tempo_fireball(2.f), timer_fireball(0.f) {
 		tamanho = 7;
 		GC.setJogador(1, pj1);
 		if (pj2) {
@@ -25,19 +28,13 @@ namespace Fases {
 			singleplayer = true;
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj2));
-		criarObstaculos();
-		criarInimigos();
 		imagem.loadFromFile("sprites/background_fase2.png");
 		tipoChao = 2;
-		criarCenario();
-		//imagem.setRepeated(true);
-		//background.setTexture(imagem);
-		//background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
-		//background.setPosition(0.f, 0.f);
-		//thud.loadFromFile("sprites/3hearts.png");
-		//HUD.setTexture(thud);
-		//HUD.setPosition(20.f, 20.f);
-		//HUD.setScale(3, 3);
+		if (!carregada) {
+			criarObstaculos();
+			criarInimigos();
+			criarCenario();
+		}
 	}
 
 	FaseSegunda::~FaseSegunda() {
@@ -109,6 +106,8 @@ namespace Fases {
 			f->setVelocidadeX(500.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1));
 			f->setTamanho((*it)->getInflamabilidade());
 
+			(*it)->setFireball(f);
+			f->setBoitata(*it);
 			lista_ents.incluir(static_cast<Entidades::Fireball*>(f));
 			GC.incluirProjetil(f);
 		}
@@ -129,7 +128,7 @@ namespace Fases {
 				it++;
 		}
 
-		pGG->desenhaBackground(&background);
+		pGG->desenhaAlheio(&background);
 		lista_ents.percorrer();
 		GC.executar();
 		//lista_ents.desenhar();
@@ -137,6 +136,59 @@ namespace Fases {
 		if (!singleplayer)
 			pGG->desenhaHUD(&HUDp2);
 
+	}
+
+	void Fases::FaseSegunda::carregar(ifstream& arquivo) {
+		imagem.setRepeated(true);
+		background.setTexture(imagem);
+		background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
+		background.setPosition(0.f, 0.f);
+		pGG->desenhaAlheio(&background);
+
+		string tipoEntidade;
+
+		while (arquivo >> tipoEntidade) {
+			cout << tipoEntidade << endl;
+			if (tipoEntidade == "chao") {
+				Entidades::Chao* chao = new Entidades::Chao();
+				chao->carregar(arquivo);
+				chao->setTamanho(tamanho);
+				chao->setTipo(tipoChao);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
+				GC.setChao(chao);
+			}
+			else if (tipoEntidade == "macaco") {
+				Entidades::Personagens::Macaco* m = new Entidades::Personagens::Macaco();
+				m->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(m));
+				GC.incluirInimigo(m);
+			}
+			else if (tipoEntidade == "plataforma") {
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma();
+				p->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(p));
+				GC.incluirObstaculo(p);
+			}
+			else if (tipoEntidade == "boitata") {
+				Entidades::Personagens::Boitata* b = new Entidades::Personagens::Boitata();
+				b->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(b));
+				GC.incluirInimigo(b);
+				LBs.insert(b);
+			}
+			else if (tipoEntidade == "formigueiro") {
+				Entidades::Obstaculos::Formigueiro* f = new Entidades::Obstaculos::Formigueiro();
+				f->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
+				GC.incluirObstaculo(f);
+			}
+			else if (tipoEntidade == "fireball") {
+				Entidades::Fireball* f = new Entidades::Fireball();
+				f->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(f));
+				GC.incluirProjetil(f);
+			}
+		}
 	}
 
 }

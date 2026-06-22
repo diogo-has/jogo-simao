@@ -7,7 +7,8 @@ namespace Entidades {
 		class Plataforma : public Obstaculo {
 
 		private:
-			int altura;
+			float forcaFlutuacao;
+			float altura;
 		public:
 			//Plataforma(float x, float y);
 
@@ -17,8 +18,11 @@ namespace Entidades {
 
 			void executar();
 			void obstaculizar(Personagens::Jogador* p);
+			void obstaculizar(Personagens::Inimigo* i);
 			void salvar();
-			void setAltura(int a);
+			void salvarDataBuffer();
+			void carregar(ifstream& arquivo);
+			void setAltura(float a);
 
 		};
 	}

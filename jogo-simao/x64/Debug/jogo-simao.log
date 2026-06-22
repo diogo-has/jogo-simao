@@ -1,3 +1,2 @@
-﻿  Jogo.cpp
-C:\Users\diogo\source\repos\jogo-simao\Jogo.cpp(59,25): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+﻿  Plataforma.cpp
   jogo-simao.vcxproj -> C:\Users\diogo\source\repos\jogo-simao\x64\Debug\jogo-simao.exe

@@ -22,6 +22,19 @@ namespace Entidades {
 		
 		void Cacador::salvar()
 		{
+			salvarDataBuffer();
+		}
+		void Cacador::salvarDataBuffer() {
+			buffer << "cacador";
+
+			Inimigo::salvarDataBuffer();
+
+			buffer << " " << maldade << " " << timer_movimento << endl;
+		}
+		void Cacador::carregar(ifstream& arquivo) {
+			Inimigo::carregar(arquivo);
+
+			arquivo >> maldade >> timer_movimento;
 		}
 		void Cacador::mover()
 		{
@@ -32,19 +45,13 @@ namespace Entidades {
 				mudarDirecao(!getDirecao());
 				timer_movimento = 0.f;
 			}
-
+			
 			velocidade += aceleracao * dt;
 			posicao += velocidade * dt;
 			sprite.setPosition(posicao);
 		}
-		void Cacador::danificar(Jogador* p)
-		{
+		void Cacador::danificar(Jogador* p) {
 			p->tomarDano(maldade);
 		}
-		void Cacador::salvarDataBuffer()
-		{
-
-		}
-		
 	}
 }

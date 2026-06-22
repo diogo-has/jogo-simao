@@ -1,5 +1,6 @@
 #pragma once
 #include "Jogador.h"
+#include "Inimigo.h"
 
 namespace Entidades {
 	namespace Obstaculos {
@@ -11,9 +12,11 @@ namespace Entidades {
 				Obstaculo();
 				virtual ~Obstaculo();
 				void salvarDataBuffer();
+				void carregar(ifstream& arquivo);
 				virtual void executar() = 0;
 				virtual void salvar() = 0;
 				virtual void obstaculizar(Personagens::Jogador* p) = 0;
+				virtual void obstaculizar(Personagens::Inimigo* i) = 0;
 				bool getDanoso();
 			
 		};

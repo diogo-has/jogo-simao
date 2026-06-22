@@ -1,32 +1,47 @@
 #include "Fase.h"
 #include "Boitata.h"
 #include "Macaco.h"
-#include "Plataforma.h"
+#include <stdexcept>
 
 namespace Fases {
 	void Fase::criarMacacos()
 	{
 		int qntMacacos = MIN_RAND_ENTIDADES + (std::rand() % (maxMacacos - MIN_RAND_ENTIDADES + 1));
 		
-		int qnt_lugares = tamanho * 2;
+		int qnt_lugares = (tamanho-1) * 3;
 		set<int> lugares;
 		while (lugares.size() < qntMacacos) {
 			int lugarMacaco = 1 + (std::rand() % qnt_lugares);
 			lugares.insert(lugarMacaco);
 		}
+
 		set<int>::iterator it;
+		int cont_plats = 0;
 		for (it = lugares.begin(); it != lugares.end(); it++) {
 			Entidades::Personagens::Macaco* m = new Entidades::Personagens::Macaco;
 			lista_ents.incluir(static_cast<Entidades::Entidade*>(m));
 			GC.incluirInimigo(m);
-			if ((*it) % 2 == 0) {
-				m->setPosicao({ 100.f + ( (int)((*it)/2) * LARGURA_TELA), 200.f});
+			if ((*it) % 3 == 0) {
+				m->setPosicao({ 100.f + ( (int)((*it) / 3) * LARGURA_TELA), 400.f});
 				m->setRaiva(4);
 			}
-			else {
-				m->setPosicao({ 700.f + ((int)((*it) / 2) * LARGURA_TELA), 200.f });
+			else if ((*it) % 3 == 1) {
+				m->setPosicao({ 700.f + ((int)((*it) / 3) * LARGURA_TELA), 400.f });
 				m->mudarDirecao(DIRECAO_ESQUERDA);
 				m->setVelocidadeX(-100.f);
+			}
+			else {
+				try {
+					Entidades::Obstaculos::Plataforma* plat = LPs.at(cont_plats);
+					m->setPosicao({ plat->getPosicao().x, plat->getPosicao().y - 100});
+					m->setVelocidadeX(0.f);
+					cont_plats++;
+				}
+				catch (const std::out_of_range& e) {
+					m->setPosicao({ 100.f + ((int)((*it) / 3) * LARGURA_TELA), 200.f });
+					m->setRaiva(4);
+				}
+
 			}
 		}
 
@@ -53,11 +68,14 @@ namespace Fases {
 			Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma;
 			lista_ents.incluir(static_cast<Entidades::Entidade*>(p));
 			GC.incluirObstaculo(p);
+			float altura = (200.f + (std::rand() % 91));
 			p->setPosicao({
 				(100.f + (std::rand() % 601)) + ((*it) * LARGURA_TELA),
-				0
+				altura
+
 			});
-			p->setAltura(250 + (std::rand() % 91));
+			p->setAltura(altura);
+			LPs.push_back(p);
 		}
 	}
 	void Fase::criarCenario()
@@ -72,7 +90,7 @@ namespace Fases {
 		background.setTexture(imagem);
 		background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
 		background.setPosition(0.f, 0.f);
-		pGG->desenhaBackground(&background);
+		pGG->desenhaAlheio(&background);
 	}
 	Fase::Fase() : maxMacacos(10), maxPlataformas(7)
 	{
@@ -148,5 +166,9 @@ namespace Fases {
 			break;
 
 		}
+	}
+	void Fase::salvar(ostream& arquivo) {
+		arquivo << singleplayer << endl;
+		lista_ents.salvar(arquivo);
 	}
 }

@@ -25,6 +25,7 @@ namespace Entidades {
 		}
 		void Macaco::salvar()
 		{
+			salvarDataBuffer();
 		}
 		void Macaco::mover()
 		{
@@ -32,6 +33,7 @@ namespace Entidades {
 			timer_movimento += dt;
 			if (timer_movimento >= tempo_movimento) {
 				velocidade.x *= -1;
+				velocidade.y -= 700.f;
 				mudarDirecao(!getDirecao());
 				timer_movimento = 0.f;
 			}
@@ -46,6 +48,16 @@ namespace Entidades {
 		}
 		void Macaco::salvarDataBuffer()
 		{
+			buffer << "macaco";
+
+			Inimigo::salvarDataBuffer();
+
+			buffer << " " << tamanho << " " << timer_movimento << endl;
+		}
+		void Macaco::carregar(ifstream& arquivo) {
+			Inimigo::carregar(arquivo);
+
+			arquivo >> tamanho >> timer_movimento;
 		}
 	}
 }

@@ -8,6 +8,16 @@ namespace Entidades {
 		}
 		Obstaculo::~Obstaculo() {
 		}
+		void Obstaculo::salvarDataBuffer() {
+			Entidade::salvarDataBuffer();
+
+			buffer << " " << danoso;
+		}
+		void Obstaculo::carregar(ifstream& arquivo) {
+			Entidade::carregar(arquivo);
+
+			arquivo >> danoso;
+		}
 		bool Obstaculo::getDanoso() {
 			return danoso;
 		}

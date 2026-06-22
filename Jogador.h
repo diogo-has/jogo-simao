@@ -22,14 +22,14 @@ namespace Entidades {
 			sf::FloatRect hitbox;
 			bool jog1;
 
-
-
 		public:
 			Jogador();
 			~Jogador();
 			void colidir(Inimigo* pIn);
 			void executar();
-			void salvar();		
+			void salvar();
+			void salvarDataBuffer();
+			void carregar(ifstream& arquivo);
 			void mover();
 			void setPulando(bool pulo);
 			void iniciarPulo();

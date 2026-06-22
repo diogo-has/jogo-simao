@@ -19,9 +19,10 @@ namespace Fases {
 		void criarFireballs();
 
 	public:
-		FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr);
+		FaseSegunda(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr, bool carregada = false);
 		~FaseSegunda();
 		void executar();
+		void carregar(ifstream& arquivo);
 	};
 }
 

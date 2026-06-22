@@ -4,15 +4,24 @@
 #include "ListaEntidades.h"
 #include "GerenciadorColisoes.h"
 #include "Jogador.h"
+#include "Plataforma.h"
+
+#include <ostream>
+#include <fstream>
+
+using std::ostream;
+using std::ifstream;
 
 // Professor sugeriu fazer a relação "fase - geren. col." ser bidirecional para fazer o tratamento do chão
 // Chefão tem que atirar
+class Jogo;
 namespace Fases {
 	
 	class Fase:public Ente {
 	private:
 		const int maxMacacos;
 		const int maxPlataformas;
+		vector<Entidades::Obstaculos::Plataforma*> LPs;
 
 	protected:
 		Listas::ListaEntidades lista_ents;
@@ -39,11 +48,13 @@ namespace Fases {
 		Fase();
 		~Fase();
 		virtual void executar() = 0;
+		virtual void carregar(ifstream& arquivo) = 0;
 		void transicaoTela(int qnt);
 		void encerrar(Personagens::Jogador* pJog1, Personagens::Jogador* pJog2 = nullptr);
 		void removerJogadorDois(Personagens::Jogador* pJog);
 		void atualizaHUDP1(int vidas);
 		void atualizaHUDP2(int vidas);
+		void salvar(ostream& arquivo);
 		
 	};
 }

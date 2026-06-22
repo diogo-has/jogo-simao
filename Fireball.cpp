@@ -9,7 +9,6 @@ namespace Entidades{
 		sprite.setTextureRect(sf::IntRect(0, 0, 64, 64));
 		sprite.setOrigin(sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().height / 2);
 		setEscala(tamanho);
-		sofre_gravidade = true;
 	}
 	Fireball::~Fireball() 
 	{
@@ -28,10 +27,30 @@ namespace Entidades{
 	}
 	void Fireball::salvar()
 	{
-
+		salvarDataBuffer();
 	}
 	void Fireball::salvarDataBuffer()
 	{
+		buffer << "fireball";
+
+		Entidade::salvarDataBuffer();
+
+		buffer << " " << ativo
+			<< " " << tamanho
+			<< " " << timer_vida
+			<< endl;
+	}
+	void Fireball::colidir(Personagens::Jogador* pJog) {
+		if (pBoitata) {
+			pBoitata->danificar(pJog);
+		}
+	}
+	void Fireball::carregar(ifstream& arquivo) {
+		Entidade::carregar(arquivo);
+
+		arquivo >> ativo
+			>> tamanho
+			>> timer_vida;
 
 	}
 	void Fireball::setTamanho(int tam)
@@ -39,5 +58,8 @@ namespace Entidades{
 		setEscala(tam);
 		tamanho = tam;
 
+	}
+	void Fireball::setBoitata(Personagens::Boitata* pb) {
+		pBoitata = pb;
 	}
 }

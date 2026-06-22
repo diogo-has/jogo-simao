@@ -1,1 +1,1 @@
-﻿  jogo-simao.vcxproj -> C:\Users\diogo\source\repos\jogo-simao\x64\Release\jogo-simao.exe
+﻿LINK : fatal error LNK1104: não é possível abrir o arquivo 'C:\Users\diogo\source\repos\jogo-simao\x64\Release\jogo-simao.exe'

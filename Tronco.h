@@ -8,13 +8,16 @@ namespace Entidades {
             private:
                 int tipo;
                 sf::Texture imagem2;
+                float forcaFlutuacao;
             public:
                 Tronco();
                 ~Tronco();
                 void executar();
-                void obstaculizar(Personagens::Jogador* p);//TODO
-                void salvar();//TODO
+                void obstaculizar(Personagens::Jogador* p);
+                void obstaculizar(Personagens::Inimigo* i);
+                void salvar();
                 void salvarDataBuffer();
+                void carregar(ifstream& arquivo);
                 void setTipo(int t);
         };
 

@@ -15,7 +15,9 @@ namespace Entidades {
 			virtual void executar() = 0;
 			virtual void danificar(Jogador* p) = 0;
 			virtual void salvar() = 0;
-			virtual void salvarDataBuffer() = 0;
+			void sofrerDano(int dano);
+			void salvarDataBuffer();
+			void carregar(ifstream& arquivo);
 			void setRaiva(int r);
 		};
 	}

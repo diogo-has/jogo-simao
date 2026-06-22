@@ -2,14 +2,14 @@
 
 namespace Entidades {
     namespace Obstaculos {
-        Tronco::Tronco() : Obstaculo(), tipo(0), imagem2()
+        Tronco::Tronco() : Obstaculo(), tipo(0), imagem2(), forcaFlutuacao(2000.f)
         {
             imagem.loadFromFile("sprites/Tronco.png"); //temporario
             imagem2.loadFromFile("sprites/Troncobackground.png");
             sprite.setTexture(imagem);
-            sprite.setScale(2, 2);
+            setEscala(2);
             calculaOrigemSprite();
-            sprite.setPosition(400.f, 400.f); //mudar depois  
+            //sprite.setPosition(posicao);
             
         }
         Tronco::~Tronco()
@@ -27,6 +27,12 @@ namespace Entidades {
                 sprite.setScale(1, 1);
                 calculaOrigemSprite();
             }
+            aceleracao.y -= forcaFlutuacao;
+
+            float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+            velocidade += aceleracao * dt;
+            posicao += velocidade * dt;
+            sprite.setPosition(posicao);
         }
         void Tronco::obstaculizar(Personagens::Jogador* p)
         {
@@ -52,11 +58,25 @@ namespace Entidades {
                 p->setPosicao({ (direitaTronco + p->getHitbox().width / 2), p->getPosicao().y });
             }
         }
+        void Tronco::obstaculizar(Personagens::Inimigo* i) {
+            // Não irá colidir com inimigos
+        }
         void Tronco::salvar()
         {
+            salvarDataBuffer();
         }
         void Tronco::salvarDataBuffer()
         {
+            buffer << "tronco";
+
+            Obstaculo::salvarDataBuffer();
+
+            buffer << " " << tipo << endl;
+        }
+        void Tronco::carregar(ifstream& arquivo) {
+            Obstaculo::carregar(arquivo);
+
+            arquivo >> tipo;
         }
         void Tronco::setTipo(int t)
         {

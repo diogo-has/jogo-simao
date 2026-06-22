@@ -15,6 +15,9 @@ namespace Entidades {
 
 			calculaOrigemSprite();
 
+			posicao = { 30.f, 30.f };
+			sprite.setPosition(posicao);
+
 			hitbox.height = sprite.getGlobalBounds().height;
 			hitbox.width = sprite.getGlobalBounds().width - OFFSET_HITBOX;
 		}
@@ -23,8 +26,10 @@ namespace Entidades {
 		void Jogador::colidir(Inimigo* pIn) {
 			if (cooldown_colisao <= 0.f) {
 				if (timer_atk < tempo_atk) {
-					pIn->destruir();
+					pIn->sofrerDano(3);
 					pontos += 10;
+					cout << pontos << endl;
+					timer_atk = tempo_atk;
 					return;
 				}
 				ativarCooldown();
@@ -76,23 +81,36 @@ namespace Entidades {
 			
 		}
 		void Jogador::salvar() {
+			salvarDataBuffer();
+		}
+		void Jogador::salvarDataBuffer() {
+			//buffer << (jog1 ? "jogador1" : "jogador2");
+			Personagem::salvarDataBuffer();
+
+			buffer << " " << pontos
+				<< " " << pulando
+				<< " " << timer_pulo
+				<< " " << timer_atk
+				<< " " << cooldown_colisao
+				<< " " << jog1
+				<< endl;
+		}
+		void Entidades::Personagens::Jogador::carregar(ifstream& arquivo) {
+			Personagem::carregar(arquivo);
+
+			arquivo >> pontos
+				>> pulando
+				>> timer_pulo
+				>> timer_atk
+				>> cooldown_colisao
+				>> jog1;
 		}
 		void Jogador::mover() {
 			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
-
-			// Implementação porca de colisão com o chão, fazer melhor dps
-			//if ((posicao.y + (sprite.getLocalBounds().height / 2.f) >= ALTURA_TELA)) {
-			//	aceleracao.y = 0;
-			//	posicao.y = ALTURA_TELA - (sprite.getLocalBounds().height / 2.f);
-			//	timerPulo = 0.f;
-			//}
 			
 			if (noChao)
 			{
 				timer_pulo = 0.f;
-			}
-			else {
-				//velocidade.y += 100; //solucao temporaria para o jogador estar "dentro" da plataforma
 			}
 			velocidade += aceleracao * dt;
 			velocidade *= pow(1-friccao, dt);
@@ -105,6 +123,9 @@ namespace Entidades {
 			
 
 			posicao += velocidade * dt;
+
+			if (posicao.x < 1.f)
+				posicao.x = 1.f;
 			sprite.setPosition(posicao);
 		}
 		void Jogador::iniciarPulo()

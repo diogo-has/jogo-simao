@@ -52,25 +52,38 @@ namespace Gerenciadores {
 		}
 	}
 
+	void GerenciadorColisoes::tratarColisoesInimigsObstacs() {
+		std::vector<Personagens::Inimigo*>::iterator itIni;
+		std::list<Obstaculos::Obstaculo*>::iterator itObs;
+
+		for (itIni = LIs.begin(); itIni != LIs.end(); itIni++) {
+			for (itObs = LOs.begin(); itObs != LOs.end(); itObs++) {
+
+				bool colidiu = verificarColisao(
+					static_cast<Entidade*>(*itIni),
+					static_cast<Entidade*>(*itObs)
+				);
+
+				if (colidiu) {
+					(*itObs)->obstaculizar(*itIni);
+				}
+			}
+		}
+	}
+
 	void GerenciadorColisoes::tratarColisoesJogsProjeteis()
 	{
 		set<Fireball*>::iterator it;
 		for (it = LPs.begin(); it != LPs.end(); ) {
 			bool colidiu = verificarColisao(static_cast<Entidade*>(pJog1), static_cast<Entidade*>(*it));
 			if (colidiu) {
-				pJog1->tomarDano(1);
-				pJog1->ativarCooldown();
-				pJog1->setVelocidadeX((pJog1->getVelX()) * (-2.0));
-				pJog1->setVelocidadeY(-200.0);
+				(*it)->colidir(pJog1);
 				(*it)->destruir();
 			}
 			if (pJog2) {
 				bool colidiuP2 = verificarColisao(static_cast<Entidade*>(pJog2), static_cast<Entidade*>(*it));
 				if (colidiuP2) {
-					pJog2->tomarDano(1);
-					pJog2->ativarCooldown();
-					pJog2->setVelocidadeX((pJog2->getVelX()) * (-2.0));
-					pJog2->setVelocidadeY(-200.0);
+					(*it)->colidir(pJog2);
 					(*it)->destruir();
 				}
 			}
@@ -162,6 +175,7 @@ namespace Gerenciadores {
 		tratarColisoesJogsInimigs();
 		tratarColisoesJogsObstacs();
 		tratarColisoesJogsProjeteis();
+		tratarColisoesInimigsObstacs();
 
 	}
 	

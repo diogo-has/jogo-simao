@@ -16,10 +16,10 @@ namespace Fases {
 		//void criarFormigueiros();
 
 	public:
-		FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr);
+		FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2 = nullptr, bool carregada = false);
 		~FasePrimeira();
 		void executar();
-
+		void carregar(ifstream& arquivo);
 	};
 }
 

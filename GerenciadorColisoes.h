@@ -29,6 +29,7 @@ namespace Gerenciadores {
 		const bool verificarColisao(Entidade* pe1, Entidade* pe2) const;
 		void tratarColisoesJogsInimigs();
 		void tratarColisoesJogsObstacs();
+		void tratarColisoesInimigsObstacs();
 		void tratarColisoesJogsProjeteis();
 		void tratarColisoesChao();
 

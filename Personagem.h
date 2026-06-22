@@ -13,6 +13,7 @@ namespace Entidades {
 			~Personagem();
 
 			void salvarDataBuffer();
+			void carregar(ifstream& arquivo);
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
 			virtual void mover() = 0;

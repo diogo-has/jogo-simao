@@ -1,7 +1,7 @@
 #include "Ente.h"
 
-Ente::Ente() : id(-1), imagem(), sprite(), escala(1.f) {
-	mudarDirecao(DIRECAO_DIREITA);
+Ente::Ente() : id(-1), imagem(), sprite() {
+	
 }
 Gerenciadores::GerenciadorGrafico* Ente::pGG = nullptr;
 
@@ -16,30 +16,6 @@ void Ente::desenhar() {
 
 const sf::Sprite* Ente::getSprite() {
 	return &sprite;
-}
-
-void Ente::mudarDirecao(bool dir) {
-	if (dir == DIRECAO_DIREITA) {
-		direcao = DIRECAO_DIREITA;
-		sprite.setScale(escala, escala);
-	} else {
-		direcao = DIRECAO_ESQUERDA;
-		sprite.setScale(-escala, escala);
-	}
-}
-
-bool Ente::getDirecao() {
-	return direcao;
-}
-
-void Ente::setEscala(float esc) {
-	escala = esc;
-	if (direcao == DIRECAO_DIREITA) {
-		sprite.setScale(escala, escala);
-	}
-	else {
-		sprite.setScale(-escala, escala);
-	}
 }
 
 void Ente::calculaOrigemSprite() {

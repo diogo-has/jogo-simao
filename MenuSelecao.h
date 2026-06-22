@@ -1,7 +1,7 @@
 #pragma once
 #include "Menu.h"
-class MenuSelecao : public Menu
-{
+namespace Menus {
+	class MenuSelecao : public Menu {
 	private:
 		int numbotoes;
 		bool singleplayer;
@@ -19,5 +19,5 @@ class MenuSelecao : public Menu
 		void executar();
 		void verificaclique();
 		void mostrarhitboxes();
-};
-
+	};
+}

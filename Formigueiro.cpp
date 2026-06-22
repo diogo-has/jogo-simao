@@ -3,7 +3,7 @@
 namespace Entidades {
 	namespace Obstaculos {
 
-		Formigueiro::Formigueiro() : Obstaculo(), dano(1) 
+		Formigueiro::Formigueiro() : Obstaculo(), dano(1), forcaFlutuacao(2000.f)
 		{ 
 			danoso = true;
 			imagem.loadFromFile("sprites/Formigueiro.png"); //temporario
@@ -16,7 +16,12 @@ namespace Entidades {
 
 		void Formigueiro::executar()
 		{
+			aceleracao.y -= forcaFlutuacao;
 
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			velocidade += aceleracao * dt;
+			posicao += velocidade * dt;
+			sprite.setPosition(posicao);
 		}
 
 		void Formigueiro::obstaculizar(Personagens::Jogador* p)
@@ -30,12 +35,28 @@ namespace Entidades {
 			
 		}
 
+		void Formigueiro::obstaculizar(Personagens::Inimigo* i) {
+			// Não irá colidir com inimigos
+		}
+
 		void Formigueiro::salvar()
 		{
+			salvarDataBuffer();
 		}
 
 		void Formigueiro::salvarDataBuffer()
 		{
+			buffer << "formigeuiro";
+
+			Obstaculo::salvarDataBuffer();
+
+			buffer << " " << dano << endl;
+		}
+
+		void Formigueiro::carregar(ifstream& arquivo) {
+			Obstaculo::carregar(arquivo);
+
+			arquivo >> dano;
 		}
 		
 		

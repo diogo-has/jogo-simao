@@ -2,6 +2,7 @@
 
 namespace Entidades {
 	Chao::Chao(): Entidade() {
+		cout << "criou chao" << endl;
 		imagem.loadFromFile("sprites/chao.png");
 		imagem.setRepeated(true);
 		sprite.setTexture(imagem);
@@ -11,7 +12,9 @@ namespace Entidades {
 		sf::FloatRect bounds = sprite.getLocalBounds();
 		sprite.setOrigin(0, bounds.height);
 
-		sprite.setPosition(0, ALTURA_TELA+5);
+		posicao = { 0.f, ALTURA_TELA + 5 };
+		sprite.setPosition(posicao);
+
 	}
 
 	Chao::~Chao() {
@@ -28,13 +31,29 @@ namespace Entidades {
 		sprite.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tam / escala), imagem.getSize().y));
 	}
 	void Chao::salvar() {
+		salvarDataBuffer();
 	}
-	void Chao::setTipo(int tipo) {
-		if (tipo == 1) {
+	void Chao::salvarDataBuffer() {
+		buffer << "chao";
+
+		Entidade::salvarDataBuffer();
+
+		buffer << " " << tipo << endl;
+	}
+	void Chao::carregar(ifstream& arquivo) {
+		Entidade::carregar(arquivo);
+
+		arquivo >> tipo;
+		setTipo(tipo);
+	}
+	void Chao::setTipo(int tip) {
+		if (tip == 1) {
+			tipo = 1;
 			imagem.loadFromFile("sprites/chao.png");
 			sprite.setTexture(imagem);
 		}
-		else if (tipo == 2) {
+		else if (tip == 2) {
+			tipo = 2;
 			imagem.loadFromFile("sprites/chao_fase2.png");
 			sprite.setTexture(imagem);
 		}

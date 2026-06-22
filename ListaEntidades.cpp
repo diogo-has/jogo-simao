@@ -49,5 +49,21 @@ namespace Listas {
 		//}
 	}
 
+	void ListaEntidades::salvar(ostream& arquivo) {
+		Lista<Entidades::Entidade>::Iterator<Entidades::Entidade> it = lista.begin();
+		while (it != lista.end()) {
+			Entidades::Entidade* ent = *it;
+			if (!ent) {
+				++it;
+				continue;
+			}
+
+			ent->getBuffer()->rdbuf(arquivo.rdbuf());
+			ent->salvar();
+			ent->getBuffer()->rdbuf(nullptr);
+			++it;
+		}
+	}
+
 }
 	

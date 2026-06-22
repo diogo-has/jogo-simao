@@ -10,11 +10,14 @@
 #include "Chao.h"
 #include "Boitata.h"
 #include <iostream>
+#include <string>
+
+using std::string;
 
 
 namespace Fases {
 	
-	FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2) : maxCacadores(4), maxTroncos(6)
+	Fases::FasePrimeira::FasePrimeira(Entidades::Personagens::Jogador* pj1, Entidades::Personagens::Jogador* pj2, bool carregada) : maxCacadores(4), maxTroncos(6)
 	{
 		tamanho = 7;
 		GC.setJogador(1, pj1);
@@ -25,11 +28,13 @@ namespace Fases {
 			singleplayer = true;
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj1));
 		lista_ents.incluir(static_cast<Entidades::Entidade*>(pj2));
-		criarObstaculos();
-		criarInimigos();
 		imagem.loadFromFile("sprites/background.png");
 		tipoChao = 1;
-		criarCenario();
+		if (!carregada) {
+			criarObstaculos();
+			criarInimigos();
+			criarCenario();
+		}
 		//imagem.setRepeated(true);
 		//background.setTexture(imagem);
 		//background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
@@ -146,7 +151,7 @@ namespace Fases {
 
 	void FasePrimeira::executar()
 	{
-		pGG->desenhaBackground(&background);
+		pGG->desenhaAlheio(&background);
 		lista_ents.percorrer();
 		GC.executar();
 		//lista_ents.desenhar();
@@ -156,6 +161,52 @@ namespace Fases {
 		
 		//std::cout << "executando gc" << std::endl;
 		
+	}
+
+	void Fases::FasePrimeira::carregar(ifstream& arquivo) {
+		imagem.setRepeated(true);
+		background.setTexture(imagem);
+		background.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tamanho), imagem.getSize().y));
+		background.setPosition(0.f, 0.f);
+		pGG->desenhaAlheio(&background);
+
+		string tipoEntidade;
+
+		while (arquivo >> tipoEntidade) {
+			cout << tipoEntidade << endl;
+			if (tipoEntidade == "chao") {
+				Entidades::Chao* chao = new Entidades::Chao();
+				chao->carregar(arquivo);
+				chao->setTamanho(tamanho);
+				chao->setTipo(tipoChao);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(chao));
+				GC.setChao(chao);
+			}
+			else if (tipoEntidade == "macaco") {
+				Entidades::Personagens::Macaco* m = new Entidades::Personagens::Macaco();
+				m->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(m));
+				GC.incluirInimigo(m);
+			}
+			else if (tipoEntidade == "plataforma") {
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma();
+				p->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(p));
+				GC.incluirObstaculo(p);
+			}
+			else if (tipoEntidade == "cacador") {
+				Entidades::Personagens::Cacador* c = new Entidades::Personagens::Cacador();
+				c->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(c));
+				GC.incluirInimigo(c);
+			}
+			else if (tipoEntidade == "tronco") {
+				Entidades::Obstaculos::Tronco* t = new Entidades::Obstaculos::Tronco();
+				t->carregar(arquivo);
+				lista_ents.incluir(static_cast<Entidades::Entidade*>(t));
+				GC.incluirObstaculo(t);
+			}
+		}
 	}
 
 	//void FasePrimeira::setJog(Personagens::Jogador* p)

@@ -9,8 +9,6 @@ protected:
 	static Gerenciadores::GerenciadorGrafico* pGG;
 	sf::Texture imagem;
 	sf::Sprite sprite;
-	bool direcao;
-	float escala;
 
 public:
 	Ente();
@@ -20,9 +18,6 @@ public:
 	void desenhar();
 
 	const sf::Sprite* getSprite();
-	void mudarDirecao(bool dir);
-	bool getDirecao();
-	void setEscala(float esc);
 	virtual void calculaOrigemSprite();
 
 	static void setGG(Gerenciadores::GerenciadorGrafico* pG);

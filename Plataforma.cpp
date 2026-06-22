@@ -13,17 +13,28 @@ namespace Entidades {
 		}
 		*/
 
-		Plataforma::Plataforma() : Obstaculo(), altura(1) {
+		Plataforma::Plataforma() : Obstaculo(), forcaFlutuacao(2000.f) {
 			imagem.loadFromFile("sprites/plataforma.png");
 			sprite.setTexture(imagem);
 			setEscala(1);
 			calculaOrigemSprite();
+			velocidade.y = 30.f;
 		}
 
 		Plataforma::~Plataforma() { }
 
 		void Plataforma::executar() {
-			posicao = { posicao.x, (float)altura };
+			aceleracao.y -= forcaFlutuacao;
+
+			// Oscila ao redor da altura
+			if (std::abs(posicao.y - altura) > 50)
+				velocidade.y *= -1;
+			
+
+
+			float dt = Gerenciadores::GerenciadorGrafico::getDeltaTime();
+			velocidade += aceleracao * dt;
+			posicao += velocidade * dt;
 			sprite.setPosition(posicao);
 		}
 
@@ -51,9 +62,36 @@ namespace Entidades {
 			}
 		}
 
-		void Plataforma::salvar() { }
+		void Plataforma::obstaculizar(Personagens::Inimigo* i) {
+			float topoPlataforma = sprite.getGlobalBounds().top;
 
-		void Plataforma::setAltura(int a)
+			if (i->getPosicao().y <= sprite.getGlobalBounds().top + 20) {
+				i->setNoChao(true);
+				i->setVelocidadeY(0.f);
+				i->setAceleracaoY(0.f);
+				i->setPosicao({ i->getPosicao().x, topoPlataforma });
+			}
+		}
+
+		void Plataforma::salvar() {
+			salvarDataBuffer();
+		}
+		void Plataforma::salvarDataBuffer() {
+			buffer << "plataforma";
+
+			Obstaculo::salvarDataBuffer();
+
+			buffer << " " << altura << endl;;
+
+		}
+
+		void Plataforma::carregar(ifstream& arquivo) {
+			Obstaculo::carregar(arquivo);
+
+			arquivo >> altura;
+		}
+
+		void Plataforma::setAltura(float a)
 		{
 			altura = a;
 		}

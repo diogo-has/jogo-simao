@@ -4,6 +4,8 @@
 
 namespace Entidades {
 	class Chao :public Entidade {
+	private:
+		int tipo;
 	public:
 		Chao();
 		~Chao();
@@ -12,7 +14,9 @@ namespace Entidades {
 		void colidir(Personagens::Personagem* pP);
 		void setTamanho(int tam);
 		void salvar();
-		void setTipo(int tipo);
+		void salvarDataBuffer();
+		void carregar(ifstream& arquivo);
+		void setTipo(int tip);
 	};
 }
 

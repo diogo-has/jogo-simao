@@ -42,7 +42,7 @@ namespace Gerenciadores {
 		void desenharEnte(Ente* pE);
 		void atualizarDeltaTime();
 		static float getDeltaTime();
-		void desenhaBackground(sf::Drawable* pObjeto);
+		void desenhaAlheio(sf::Drawable* pObjeto);
 		void desenhaHUD(sf::Drawable* pObjeto);
 		void transicaoCamera(int qnt);
 		float getBordaCamera(bool lado);

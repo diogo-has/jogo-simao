@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
+#include <string>
 
 
 using std::cout;
@@ -17,6 +18,7 @@ using std::endl;
 using std::cin;
 using std::ofstream;
 using std::ifstream;
+using std::string;
 
 using Entidades::Personagens::Jogador;
  
@@ -53,11 +55,34 @@ void Jogo::inserirRanking(std::string nome, int pontos) {
     arquivoEscrita.close();
 }
 
+void Jogo::salvarJogada() {
+    ofstream saveFile("saveFile.dat");
+    if (pFase1) {
+        saveFile << "fase1 ";
+        pFase1->salvar(saveFile);
+    }
+    else if (pFase2) {
+        saveFile << "fase2 ";
+        pFase2->salvar(saveFile);
+    }
+    
+    saveFile.close();
+}
+
 Jogo::Jogo() : gg(), pJog1(), pJog2(), atual(0), pFase1(nullptr), pFase2(nullptr), pausado(false) {
     cout << "Digite o nome do jogador: ";
     cin >> nomeJogador;
     std::srand(std::time(nullptr));
     Ente::setGG(&gg);
+    fonte.loadFromFile("04b.ttf");
+
+    textoPausa.setFont(fonte);
+    textoPausa.setString("Jogo Pausado\n\nAperte [1] para salvar jogada\nAperte [2] para voltar ao menu\nAperte [ESC] para voltar ao jogo");
+    textoPausa.setCharacterSize(28);
+    textoPausa.setPosition(20.f, 20.f);
+    textoPausa.setFillColor(sf::Color::Black);
+
+
     executar();
 }
 
@@ -65,7 +90,7 @@ Jogo::~Jogo() {}
 
 void Jogo::executar() {
 
-    Menu menu(this);
+    Menus::Menu menu(this);
     
 
     while (gg.janelaAberta()) {
@@ -82,10 +107,18 @@ void Jogo::executar() {
             case sf::Event::KeyPressed:
                 switch (evento.key.code) {
                 case sf::Keyboard::Escape:
-                    gg.getJanela()->close();
+                    if (pFase1 || pFase2)
+                        pausado = !pausado;
                     break;
-                case sf::Keyboard::P:
-                    pausado = !pausado;
+                case sf::Keyboard::Num1:
+                    if (pausado)
+                        salvarJogada();
+                    break;
+                case sf::Keyboard::Num2:
+                    if (pausado) {
+                        pausado = false;
+                        pJog1.tomarDano(3);
+                    }
                     break;
                 case sf::Keyboard::Up:
                     pJog1.iniciarPulo();
@@ -93,6 +126,14 @@ void Jogo::executar() {
                 case sf::Keyboard::W:
                     if (pJog2)
                         pJog2->iniciarPulo();
+                    break;
+                case sf::Keyboard::Slash:
+                    if (pFase1 || pFase2)
+                        pJog1.atacar();
+                    break;
+                case sf::Keyboard::V:
+                    if ((pFase1 || pFase2) && pJog2)
+                        pJog2->atacar();
                     break;
                 }
             case sf::Event::MouseButtonPressed:
@@ -124,8 +165,8 @@ void Jogo::executar() {
         else
             pJog1.setPulando(false);
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Slash))
-            pJog1.atacar();
+        //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Slash))
+        //    pJog1.atacar();
 
         // Controles Jogador 2
         if (pJog2) {
@@ -141,8 +182,8 @@ void Jogo::executar() {
             else
                 pJog2->setPulando(false);
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::V))
-                pJog2->atacar();
+            //if (sf::Keyboard::isKeyPressed(sf::Keyboard::V))
+            //    pJog2->atacar();
 
         }
         
@@ -268,6 +309,9 @@ void Jogo::executar() {
 
             }
         }
+        else {
+            gg.desenhaHUD(&textoPausa);
+        }
         gg.mostrar();
     }
 }
@@ -277,6 +321,7 @@ void Jogo::setAtual(short int a)
     if (a >= 0 && a <= 6) {
         if (pFase1) {
             pFase1->encerrar(&pJog1, pJog2);
+            
             delete pFase1;
             pFase1 = nullptr;
         }
@@ -315,6 +360,33 @@ void Jogo::setAtual(short int a)
 
         atual = a;
     }
+}
+
+void Jogo::carregarJogada() {
+    ifstream saveFile("saveFile.dat");
+
+    string fase;
+    bool singleplayer;
+
+    if (!(saveFile >> fase >> singleplayer)) return;
+
+    pJog1.carregar(saveFile);
+    if (!singleplayer) {
+        pJog2 = new Jogador;
+        pJog2->setJog(JOGADOR_2);
+        pJog2->carregar(saveFile);
+    }
+    if (fase == "fase1") {
+        pFase1 = new Fases::FasePrimeira(&pJog1, pJog2, true);
+        pFase1->carregar(saveFile);
+        atual = singleplayer ? 2 : 3;
+    }
+    else if (fase == "fase2") {
+        pFase2 = new Fases::FaseSegunda(&pJog1, pJog2, true);
+        pFase2->carregar(saveFile);
+        atual = singleplayer ? 4 : 5;
+    }
+    saveFile.close();
 }
 
 

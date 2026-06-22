@@ -18,12 +18,16 @@ private:
 	Fases::FaseSegunda* pFase2;
 	std::string nomeJogador;
 	void inserirRanking(std::string nome, int pontos);
+	void salvarJogada();
 	bool pausado;
+	sf::Text textoPausa;
+	sf::Font fonte;
 
 public:
 	Jogo();
 	~Jogo();
 	void executar();
 	void setAtual(short int a = 0);
+	void carregarJogada();
 };
 

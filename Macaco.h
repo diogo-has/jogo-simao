@@ -17,6 +17,7 @@ namespace Entidades {
 				void mover();
 				void danificar(Jogador* p);
 				void salvarDataBuffer();
+				void carregar(ifstream& arquivo);
 		};
 	}
 }

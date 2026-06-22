@@ -1,7 +1,10 @@
 #pragma once
 #include <list>
+#include <ostream>
 #include "Entidade.h"
 #include "Lista.h"
+
+using std::ostream;
 
 namespace Listas {
 	class ListaEntidades {
@@ -14,6 +17,7 @@ namespace Listas {
 		void incluir(Entidades::Entidade* pE);
 		void remover(Entidades::Entidade* pE);
 		void percorrer();
+		void salvar(ostream& arquivo);
 	};
 }
 

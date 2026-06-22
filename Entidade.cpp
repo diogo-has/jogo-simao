@@ -1,14 +1,30 @@
 #include "Entidade.h"
 
 namespace Entidades {
-	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), sofre_gravidade(false), vivo(true) {
-
+	void Entidade::salvarDataBuffer() {
+		buffer << " " << posicao.x << " " << posicao.y
+			<< " " << velocidade.x << " " << velocidade.y
+			<< " " << aceleracao.x << " " << aceleracao.y
+			<< " " << direcao
+			<< " " << escala;
+	}
+	void Entidades::Entidade::carregar(ifstream& arquivo) {
+		arquivo >> posicao.x >> posicao.y
+			>> velocidade.x >> velocidade.y
+			>> aceleracao.x >> aceleracao.y
+			>> direcao
+			>> escala;
+		mudarDirecao(direcao);
+		setEscala(escala);
+		sprite.setPosition(posicao);
+	}
+	Entidade::Entidade(): posicao(0.f, 0.f), velocidade(0.f, 0.f), aceleracao(0.f, 0.f), vivo(true), buffer(nullptr), escala(1.f) {
+		mudarDirecao(DIRECAO_DIREITA);
 	}
 	Entidade::~Entidade() {
 	}
 
 	void Entidade::gravitar() {
-		if (!sofre_gravidade) return;
 		aceleracao.y = 2000.f;
 	}
 	void Entidade::destruir() {
@@ -16,6 +32,32 @@ namespace Entidades {
 	}
 	bool Entidade::getVivo() {
 		return vivo;
+	}
+	void Entidade::mudarDirecao(bool dir) {
+		if (dir == DIRECAO_DIREITA) {
+			direcao = DIRECAO_DIREITA;
+			sprite.setScale(escala, escala);
+		}
+		else {
+			direcao = DIRECAO_ESQUERDA;
+			sprite.setScale(-escala, escala);
+		}
+	}
+
+	bool Entidade::getDirecao() {
+		return direcao;
+	}
+	void Entidade::setEscala(float esc) {
+		escala = esc;
+		if (direcao == DIRECAO_DIREITA) {
+			sprite.setScale(escala, escala);
+		}
+		else {
+			sprite.setScale(-escala, escala);
+		}
+	}
+	ostream* Entidade::getBuffer() {
+		return &buffer;
 	}
 	void Entidade::setVelocidadeX(float vx) {
 		velocidade.x = vx;

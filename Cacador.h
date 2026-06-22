@@ -14,9 +14,10 @@ namespace Entidades {
 				~Cacador();
 				void executar();
 				void salvar();
+				void salvarDataBuffer();
+				void carregar(ifstream& arquivo);
 				void mover();
 				void danificar(Jogador* p);
-				void salvarDataBuffer();
 		};
 	}
 }
