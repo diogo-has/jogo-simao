@@ -27,7 +27,7 @@ namespace Entidades {
 		pP->setVelocidadeY(0.f);
 		pP->setPosicao({ pP->getPosicao().x, sprite.getGlobalBounds().top });
 	}
-	void Chao::setTamanho(int tam) {
+	void Chao::setTamanho(const int tam) {
 		sprite.setTextureRect(sf::IntRect(0, 0, int(LARGURA_TELA * tam / escala), imagem.getSize().y));
 	}
 	void Chao::salvar() {
@@ -46,7 +46,7 @@ namespace Entidades {
 		arquivo >> tipo;
 		setTipo(tipo);
 	}
-	void Chao::setTipo(int tip) {
+	void Chao::setTipo(const int tip) {
 		if (tip == 1) {
 			tipo = 1;
 			imagem.loadFromFile("sprites/chao.png");

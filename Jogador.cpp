@@ -152,7 +152,7 @@ namespace Entidades {
 			}
 		}
 
-		void Jogador::setPulando(bool pulo) {
+		void Jogador::setPulando(const bool pulo) {
 			pulando = pulo;
 		}
 
@@ -160,7 +160,7 @@ namespace Entidades {
 			timer_atk = 0.f;
 		}
 
-		sf::FloatRect Jogador::getHitbox() {
+		const sf::FloatRect Jogador::getHitbox() const {
 			return hitbox;
 		}
 
@@ -174,7 +174,7 @@ namespace Entidades {
 			cooldown_colisao = tempo_cooldown;
 		}
 
-		void Jogador::setJog(bool jog) {
+		void Jogador::setJog(const bool jog) {
 			if (jog) {
 				imagem.loadFromFile("sprites/p1.png");
 				atacando.loadFromFile("sprites/p1_atk.png");
@@ -189,10 +189,14 @@ namespace Entidades {
 
 		}
 
-		int Jogador::getPontos() {
+		const int Jogador::getPontos() const {
 			return pontos;
 		}
-		
+
+		void Jogador::setPontos(const int pts) {
+			pontos = pts;
+		}
+
 	
 	}
 }

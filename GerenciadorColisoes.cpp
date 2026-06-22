@@ -179,7 +179,7 @@ namespace Gerenciadores {
 
 	}
 	
-	void Gerenciadores::GerenciadorColisoes::setJogador(int nJog, Personagens::Jogador* pJog) {
+	void Gerenciadores::GerenciadorColisoes::setJogador(const int nJog, Personagens::Jogador* pJog) {
 		if (nJog == 1) {
 			pJog1 = pJog;
 		}

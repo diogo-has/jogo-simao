@@ -14,7 +14,7 @@ void Ente::desenhar() {
 	pGG->desenharEnte(this);
 }
 
-const sf::Sprite* Ente::getSprite() {
+const sf::Sprite* Ente::getSprite() const {
 	return &sprite;
 }
 

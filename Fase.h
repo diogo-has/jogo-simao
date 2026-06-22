@@ -49,11 +49,10 @@ namespace Fases {
 		~Fase();
 		virtual void executar() = 0;
 		virtual void carregar(ifstream& arquivo) = 0;
-		void transicaoTela(int qnt);
 		void encerrar(Personagens::Jogador* pJog1, Personagens::Jogador* pJog2 = nullptr);
 		void removerJogadorDois(Personagens::Jogador* pJog);
-		void atualizaHUDP1(int vidas);
-		void atualizaHUDP2(int vidas);
+		void atualizaHUDP1(const int vidas);
+		void atualizaHUDP2(const int vidas);
 		void salvar(ostream& arquivo);
 		
 	};

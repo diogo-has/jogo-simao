@@ -53,7 +53,7 @@ namespace Entidades{
 			>> timer_vida;
 
 	}
-	void Fireball::setTamanho(int tam)
+	void Fireball::setTamanho(const float tam)
 	{
 		setEscala(tam);
 		tamanho = tam;

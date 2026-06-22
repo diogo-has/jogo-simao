@@ -30,18 +30,18 @@ namespace Entidades {
 		virtual void salvar() = 0;
 		void gravitar();
 		void destruir();
-		bool getVivo();
-		void mudarDirecao(bool dir);
-		bool getDirecao();
-		void setEscala(float esc);
+		const bool getVivo() const;
+		void mudarDirecao(const bool dir);
+		const bool getDirecao() const;
+		void setEscala(const float esc);
 		ostream* getBuffer();
-		void setVelocidadeX(float vx);
-		void setVelocidadeY(float vy);
-		void setAceleracaoX(float ax);
-		void setAceleracaoY(float ay);
-		void setPosicao(sf::Vector2f pos);
-		sf::Vector2f getPosicao();
-		virtual sf::FloatRect getHitbox();
+		void setVelocidadeX(const float vx);
+		void setVelocidadeY(const float vy);
+		void setAceleracaoX(const float ax);
+		void setAceleracaoY(const float ay);
+		void setPosicao(const sf::Vector2f pos);
+		const sf::Vector2f getPosicao() const;
+		const virtual sf::FloatRect getHitbox() const;
 		
 	};
 }

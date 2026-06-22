@@ -91,7 +91,7 @@ namespace Entidades {
 			arquivo >> altura;
 		}
 
-		void Plataforma::setAltura(float a)
+		void Plataforma::setAltura(const float a)
 		{
 			altura = a;
 		}

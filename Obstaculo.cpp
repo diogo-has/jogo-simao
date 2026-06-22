@@ -2,8 +2,6 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		Obstaculo::Obstaculo(float x, float y) : Entidade(), danoso(false) {
-		}
 		Obstaculo::Obstaculo() : Entidade(), danoso(false) {
 		}
 		Obstaculo::~Obstaculo() {
@@ -18,7 +16,7 @@ namespace Entidades {
 
 			arquivo >> danoso;
 		}
-		bool Obstaculo::getDanoso() {
+		const bool Obstaculo::getDanoso() const {
 			return danoso;
 		}
 	}

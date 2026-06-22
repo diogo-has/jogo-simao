@@ -30,10 +30,10 @@ namespace Entidades {
 	void Entidade::destruir() {
 		vivo = false;
 	}
-	bool Entidade::getVivo() {
+	const bool Entidade::getVivo() const {
 		return vivo;
 	}
-	void Entidade::mudarDirecao(bool dir) {
+	void Entidade::mudarDirecao(const bool dir) {
 		if (dir == DIRECAO_DIREITA) {
 			direcao = DIRECAO_DIREITA;
 			sprite.setScale(escala, escala);
@@ -44,10 +44,10 @@ namespace Entidades {
 		}
 	}
 
-	bool Entidade::getDirecao() {
+	const bool Entidade::getDirecao() const{
 		return direcao;
 	}
-	void Entidade::setEscala(float esc) {
+	void Entidade::setEscala(const float esc) {
 		escala = esc;
 		if (direcao == DIRECAO_DIREITA) {
 			sprite.setScale(escala, escala);
@@ -59,27 +59,27 @@ namespace Entidades {
 	ostream* Entidade::getBuffer() {
 		return &buffer;
 	}
-	void Entidade::setVelocidadeX(float vx) {
+	void Entidade::setVelocidadeX(const float vx) {
 		velocidade.x = vx;
 	}
-	void Entidade::setVelocidadeY(float vy) {
+	void Entidade::setVelocidadeY(const float vy) {
 		velocidade.y = vy;
 	}
-	void Entidade::setAceleracaoX(float ax) {
+	void Entidade::setAceleracaoX(const float ax) {
 		aceleracao.x = ax;
 	}
-	void Entidade::setAceleracaoY(float ay) {
+	void Entidade::setAceleracaoY(const float ay) {
 		aceleracao.y = ay;
 	}
-	void Entidade::setPosicao(sf::Vector2f pos) {
+	void Entidade::setPosicao(const sf::Vector2f pos) {
 		posicao = pos;
 		sprite.setPosition(posicao);
 		desenhar();
 	}
-	sf::Vector2f Entidade::getPosicao() {
+	const sf::Vector2f Entidade::getPosicao() const {
 		return posicao;
 	}
-	sf::FloatRect Entidade::getHitbox() {
+	const sf::FloatRect Entidade::getHitbox() const {
 		return sprite.getGlobalBounds();
 	}
 }

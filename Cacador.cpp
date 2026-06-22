@@ -49,9 +49,13 @@ namespace Entidades {
 			velocidade += aceleracao * dt;
 			posicao += velocidade * dt;
 			sprite.setPosition(posicao);
+			aceleracao.x = 0;
 		}
 		void Cacador::danificar(Jogador* p) {
 			p->tomarDano(maldade);
+			velocidade.x *= -1;
+			mudarDirecao(!getDirecao());
+			timer_movimento = 0.f;
 		}
 	}
 }

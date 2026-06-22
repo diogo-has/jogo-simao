@@ -104,7 +104,7 @@ namespace Fases {
 			f->setPosicao({posicaoB.x + 100.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1), posicaoB.y - 50.f});
 			f->mudarDirecao(direcaoB);
 			f->setVelocidadeX(500.f * (direcaoB == DIRECAO_DIREITA ? 1 : -1));
-			f->setTamanho((*it)->getInflamabilidade());
+			f->setTamanho((float) (*it)->getInflamabilidade());
 
 			(*it)->setFireball(f);
 			f->setBoitata(*it);

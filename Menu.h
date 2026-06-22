@@ -17,7 +17,7 @@ namespace Menus {
 			sf::FloatRect hitbox_ranking;
 			sf::RectangleShape shape_ranking;
 		protected:
-			Menu* psel; // temporario?
+			Menu* psel;
 		public:
 			Menu();
 			Menu(Jogo* pj);

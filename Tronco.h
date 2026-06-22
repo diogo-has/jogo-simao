@@ -18,7 +18,7 @@ namespace Entidades {
                 void salvar();
                 void salvarDataBuffer();
                 void carregar(ifstream& arquivo);
-                void setTipo(int t);
+                void setTipo(const int t);
         };
 
     }

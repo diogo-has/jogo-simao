@@ -8,6 +8,8 @@
 #include "FaseSegunda.h"
 #include <string>
 
+using std::string;
+
 class Jogo {
 private:
 	Gerenciadores::GerenciadorGrafico gg;
@@ -17,17 +19,17 @@ private:
 	Fases::FasePrimeira* pFase1;
 	Fases::FaseSegunda* pFase2;
 	std::string nomeJogador;
-	void inserirRanking(std::string nome, int pontos);
-	void salvarJogada();
 	bool pausado;
 	sf::Text textoPausa;
 	sf::Font fonte;
+	void inserirRanking(const string nome, const int pontos);
+	void salvarJogada();
 
 public:
 	Jogo();
 	~Jogo();
 	void executar();
-	void setAtual(short int a = 0);
+	void setAtual(const short int a = 0);
 	void carregarJogada();
 };
 

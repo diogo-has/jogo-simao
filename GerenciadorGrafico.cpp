@@ -84,16 +84,16 @@ namespace Gerenciadores {
 		}
 	}
 
-	void GerenciadorGrafico::transicaoCamera(int qnt) {
+	void GerenciadorGrafico::transicaoCamera(const int qnt) {
 		if (camera_movendo) return;
 		camera_inicio = camera.getCenter();
 		camera_alpha = 0.0f;
 		camera_destino.x = camera.getCenter().x + (LARGURA_TELA * qnt);
 		camera_velocidade = 1.5f;
 		camera_movendo = true;
-	} //depois inplementar mov vertical da camera?
+	}
 
-	float GerenciadorGrafico::getBordaCamera(bool lado) {
+	float GerenciadorGrafico::getBordaCamera(const bool lado) {
 		if (lado == LADO_DIREITO)
 			return camera.getCenter().x + LARGURA_TELA / 2;
 		else
@@ -102,7 +102,6 @@ namespace Gerenciadores {
 
 	void GerenciadorGrafico::resetCamera()
 	{
-		//camera.setCenter({ 400,300 });
 		camera_inicio = camera.getCenter();
 		camera_alpha = 0.0f;
 		camera_destino.x = 400;

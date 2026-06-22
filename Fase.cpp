@@ -115,7 +115,7 @@ namespace Fases {
 			GC.setJogador(2, nullptr);
 		}
 	}
-	void Fase::atualizaHUDP1(int vidas) {
+	void Fase::atualizaHUDP1(const int vidas) {
 		switch (vidas) {
 		case 1:
 			tHUDp1.loadFromFile("sprites/1heart.png");
@@ -138,14 +138,8 @@ namespace Fases {
 			
 		}
 	}
-	void Fase::atualizaHUDP2(int vidas) {
+	void Fase::atualizaHUDP2(const int vidas) {
 		switch (vidas) {
-		case 0:
-			tHUDp2.loadFromFile("sprites/0heartP2.png");
-			HUDp2.setTexture(tHUDp2);
-			HUDp2.setPosition(650.f, 20.f);
-			HUDp2.setScale(3, 3);
-			break;
 		case 1:
 			tHUDp2.loadFromFile("sprites/1heartP2.png");
 			HUDp2.setTexture(tHUDp2);
@@ -164,7 +158,12 @@ namespace Fases {
 			HUDp2.setPosition(650.f, 20.f);
 			HUDp2.setScale(3, 3);
 			break;
-
+		default:
+			tHUDp2.loadFromFile("sprites/0heartP2.png");
+			HUDp2.setTexture(tHUDp2);
+			HUDp2.setPosition(650.f, 20.f);
+			HUDp2.setScale(3, 3);
+			break;
 		}
 	}
 	void Fase::salvar(ostream& arquivo) {

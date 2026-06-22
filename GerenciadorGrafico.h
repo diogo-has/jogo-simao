@@ -44,9 +44,9 @@ namespace Gerenciadores {
 		static float getDeltaTime();
 		void desenhaAlheio(sf::Drawable* pObjeto);
 		void desenhaHUD(sf::Drawable* pObjeto);
-		void transicaoCamera(int qnt);
-		float getBordaCamera(bool lado);
-		void resetCamera();//temporario?
+		void transicaoCamera(const int qnt);
+		float getBordaCamera(const bool lado);
+		void resetCamera();
 	};
 }
 

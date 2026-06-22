@@ -12,11 +12,11 @@ namespace Entidades {
 
 		void executar();
 		void colidir(Personagens::Personagem* pP);
-		void setTamanho(int tam);
+		void setTamanho(const int tam);
 		void salvar();
 		void salvarDataBuffer();
 		void carregar(ifstream& arquivo);
-		void setTipo(int tip);
+		void setTipo(const int tip);
 	};
 }
 

@@ -15,7 +15,7 @@ namespace Fases {
 		void criarBoitatas(); //imimigo difícil
 		void criarObstaculos();
 		void criarFormigueiros();
-		//void criarTroncos();
+
 		void criarFireballs();
 
 	public:

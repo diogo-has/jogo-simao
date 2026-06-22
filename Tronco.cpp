@@ -78,7 +78,7 @@ namespace Entidades {
 
             arquivo >> tipo;
         }
-        void Tronco::setTipo(int t)
+        void Tronco::setTipo(const int t)
         {
             tipo = t % 2;
         }

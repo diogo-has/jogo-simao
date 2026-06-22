@@ -20,7 +20,7 @@ namespace Entidades {
 			void danificar(Jogador* p);
 			void salvarDataBuffer();
 			void carregar(ifstream& arquivo);
-			int getInflamabilidade();
+			const int getInflamabilidade() const;
 			void setFireball(Fireball* pfb);
 		};
 	}

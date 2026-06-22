@@ -16,26 +16,26 @@ namespace Entidades {
 
 			arquivo >> num_vidas >> friccao >> noChao;
 		}
-		void Personagem::setNoChao(bool b) {
+		void Personagem::setNoChao(const bool b) {
 			noChao = b;
 		}
-		float Personagem::getVelX() const
+		const float Personagem::getVelX() const
 		{
 			return velocidade.x;
 		}
-		float Personagem::getVelY() const
+		const float Personagem::getVelY() const
 		{
 			return velocidade.y;
 		}
-		void Personagem::tomarDano(int d)
+		void Personagem::tomarDano(const int d)
 		{
 			num_vidas -= d;
 		}
-		int Personagem::getVidas() const
+		const int Personagem::getVidas() const
 		{
 			return num_vidas;
 		}
-		void Personagem::setVidas(int v)
+		void Personagem::setVidas(const int v)
 		{
 			num_vidas = v;
 		}

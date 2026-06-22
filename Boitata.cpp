@@ -47,8 +47,9 @@ namespace Entidades {
 		{
 			p->tomarDano(1);
 			p->ativarCooldown();
-			p->setVelocidadeX((p->getVelX()) * (-2.0));
+			p->setVelocidadeX((p->getVelX()) * (-2.f));
 			p->setVelocidadeY(-200.0);
+			velocidade.y = -2000.f;
 		}
 		void Boitata::salvarDataBuffer()
 		{
@@ -68,7 +69,7 @@ namespace Entidades {
 			arquivo >> inflamabilidade
 				>> timer_movimento;
 		}
-		int Boitata::getInflamabilidade()
+		const int Boitata::getInflamabilidade() const
 		{
 			return inflamabilidade;
 		}

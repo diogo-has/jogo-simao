@@ -22,10 +22,10 @@ using std::string;
 
 using Entidades::Personagens::Jogador;
  
-void Jogo::inserirRanking(std::string nome, int pontos) {
+void Jogo::inserirRanking(const string nome, const int pontos) {
     struct JogadorRanking {
         int pontuacao;
-        std::string nome;
+        string nome;
     };
 
     vector<JogadorRanking> ranking;
@@ -48,7 +48,7 @@ void Jogo::inserirRanking(std::string nome, int pontos) {
 
     ranking.insert(it, { pontos, nome });
 
-    std::ofstream arquivoEscrita("rankFile.dat");
+    ofstream arquivoEscrita("rankFile.dat");
     for (const auto& jog : ranking) {
         arquivoEscrita << jog.pontuacao << " " << jog.nome << "\n";
     }
@@ -241,9 +241,10 @@ void Jogo::executar() {
                         cout << "indo para o menu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3); // temporario
-                        pJog1.setPosicao({ 20, 200 }); //temporario
-                        pJog1.setVelocidadeX(0);//temporario
+                        pJog1.setVidas(3);
+                        pJog1.setPosicao({ 20, 200 });
+                        pJog1.setVelocidadeX(0);
+                        pJog1.setPontos(0);
                         break;
                     }
                     pFase1->atualizaHUDP1(pJog1.getVidas());
@@ -254,9 +255,10 @@ void Jogo::executar() {
                         cout << "indo para o menu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3); // temporario
-                        pJog1.setPosicao({ 20, 200 }); //temporario
-                        pJog1.setVelocidadeX(0);//temporario
+                        pJog1.setVidas(3);
+                        pJog1.setPosicao({ 20, 200 });
+                        pJog1.setVelocidadeX(0);
+                        pJog1.setPontos(0);
                         delete pJog2;
                         pJog2 = nullptr;
                         break;
@@ -276,9 +278,10 @@ void Jogo::executar() {
                         cout << "indo para o menu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3); // temporario
-                        pJog1.setPosicao({ 20, 200 }); //temporario
-                        pJog1.setVelocidadeX(0);//temporario
+                        pJog1.setVidas(3);
+                        pJog1.setPosicao({ 20, 200 });
+                        pJog1.setVelocidadeX(0);
+                        pJog1.setPontos(0);
                         break;
                     }
                     pFase2->atualizaHUDP1(pJog1.getVidas());
@@ -289,9 +292,10 @@ void Jogo::executar() {
                         cout << "indo para o menu" << endl;
                         gg.resetCamera();
                         setAtual(0);
-                        pJog1.setVidas(3); // temporario
-                        pJog1.setPosicao({ 20, 200 }); //temporario
-                        pJog1.setVelocidadeX(0);//temporario
+                        pJog1.setVidas(3);
+                        pJog1.setPosicao({ 20, 200 });
+                        pJog1.setVelocidadeX(0);
+                        pJog1.setPontos(0);
                         delete pJog2;
                         pJog2 = nullptr;
                         break;
@@ -316,7 +320,7 @@ void Jogo::executar() {
     }
 }
 
-void Jogo::setAtual(short int a)
+void Jogo::setAtual(const short int a)
 {
     if (a >= 0 && a <= 6) {
         if (pFase1) {

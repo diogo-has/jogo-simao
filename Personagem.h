@@ -17,12 +17,12 @@ namespace Entidades {
 			virtual void executar() = 0;
 			virtual void salvar() = 0;
 			virtual void mover() = 0;
-			void setNoChao(bool b); //ver se é utilizado
-			float getVelX() const;
-			float getVelY() const;
-			void tomarDano(int d = 0);
-			int getVidas() const;
-			void setVidas(int v); //nao sei se é permitido
+			void setNoChao(const bool b);
+			const float getVelX() const;
+			const float getVelY() const;
+			void tomarDano(const int d = 0);
+			const int getVidas() const;
+			void setVidas(const int v);
 		};
 	}
 }

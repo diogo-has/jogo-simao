@@ -11,7 +11,7 @@ namespace Entidades {
 		{
 		}
 
-		void Inimigo::sofrerDano(int dano) {
+		void Inimigo::sofrerDano(const int dano) {
 			num_vidas -= dano;
 			if (num_vidas <= 0)
 				destruir();
@@ -29,7 +29,7 @@ namespace Entidades {
 			arquivo >> raiva;
 		}
 
-		void Inimigo::setRaiva(int r)
+		void Inimigo::setRaiva(const int r)
 		{
 			raiva = r;
 		}

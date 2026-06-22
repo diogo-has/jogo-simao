@@ -10,7 +10,7 @@ namespace Entidades {
     {
         protected:
             bool ativo;
-            int tamanho;
+            float tamanho;
             float timer_vida;
             float tempo_vida;
             Personagens::Boitata* pBoitata;
@@ -23,7 +23,7 @@ namespace Entidades {
             void salvarDataBuffer();
             void colidir(Personagens::Jogador* pJog);
             void carregar(ifstream& arquivo);
-            void setTamanho(int tam);
+            void setTamanho(const float tam);
             void setBoitata(Personagens::Boitata* pb);
     };
 }

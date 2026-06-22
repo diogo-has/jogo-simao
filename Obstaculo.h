@@ -4,11 +4,10 @@
 
 namespace Entidades {
 	namespace Obstaculos {
-		class Obstaculo : public Entidade {
+		class Obstaculo : public Entidade { 
 			protected:
 				bool danoso;
 			public:
-				Obstaculo( float x, float y);
 				Obstaculo();
 				virtual ~Obstaculo();
 				void salvarDataBuffer();
@@ -17,7 +16,7 @@ namespace Entidades {
 				virtual void salvar() = 0;
 				virtual void obstaculizar(Personagens::Jogador* p) = 0;
 				virtual void obstaculizar(Personagens::Inimigo* i) = 0;
-				bool getDanoso();
+				const bool getDanoso() const;
 			
 		};
 	}

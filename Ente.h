@@ -17,7 +17,7 @@ public:
 	virtual void executar() = 0;
 	void desenhar();
 
-	const sf::Sprite* getSprite();
+	const sf::Sprite* getSprite() const;
 	virtual void calculaOrigemSprite();
 
 	static void setGG(Gerenciadores::GerenciadorGrafico* pG);

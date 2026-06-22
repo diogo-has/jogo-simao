@@ -31,15 +31,16 @@ namespace Entidades {
 			void salvarDataBuffer();
 			void carregar(ifstream& arquivo);
 			void mover();
-			void setPulando(bool pulo);
+			void setPulando(const bool pulo);
 			void iniciarPulo();
 			void pular();
 			void atacar();
-			sf::FloatRect getHitbox() override;
+			const sf::FloatRect getHitbox() const;
 			bool podeColidir();
 			void ativarCooldown();
-			void setJog(bool jog);
-			int getPontos();
+			void setJog(const bool jog);
+			const int getPontos() const;
+			void setPontos(const int pts);
 			
 		};
 	}

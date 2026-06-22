@@ -22,7 +22,7 @@ namespace Entidades {
 			void salvar();
 			void salvarDataBuffer();
 			void carregar(ifstream& arquivo);
-			void setAltura(float a);
+			void setAltura(const float a);
 
 		};
 	}
