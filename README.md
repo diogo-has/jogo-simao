@@ -7,6 +7,8 @@
 
 Um jogo de plataforma 2D desenvolvido por [Diogo Haschich](https://github.com/diogo-has) e [Vinícius Henrique](https://github.com/vinihenrique182) em **C++** utilizando [**SFML (Simple Fast Media Library)**](https://www.sfml-dev.org/), para a displina de Técnicas de Programação da UTFPR. Você controla um indígena que percorre a Amazônia enfrentando obstáculos, inimigos inusitados e diversos desafios ao longo da jornada.
 
+![](https://i.ibb.co/356kpK0t/image.png)
+
 ---
 
 ## Download
