@@ -153,6 +153,7 @@
     <ClInclude Include="MenuRanking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
@@ -164,5 +165,11 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{da9a9d62-bcff-492a-8a40-027995864360}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="amazon-forest-simulator.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sprites\icon.ico" />
   </ItemGroup>
 </Project>

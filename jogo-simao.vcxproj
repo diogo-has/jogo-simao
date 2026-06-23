@@ -24,6 +24,7 @@
     <ProjectGuid>{707e6c5e-f613-48a1-8aad-2a5544f5b8e4}</ProjectGuid>
     <RootNamespace>jogosimao</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>amazon-forest-simulator</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -169,6 +170,7 @@
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Fireball.h" />
     <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Tronco.h" />
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +202,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="amazon-forest-simulator.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sprites\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

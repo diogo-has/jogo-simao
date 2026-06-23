@@ -24,7 +24,7 @@ namespace Gerenciadores {
 	}
 
 	GerenciadorGrafico::GerenciadorGrafico() :
-		janela(sf::VideoMode(LARGURA_TELA, ALTURA_TELA), "Jogo Simão", sf::Style::Titlebar | sf::Style::Close),
+		janela(sf::VideoMode(LARGURA_TELA, ALTURA_TELA), "Amazon Forest Simulator", sf::Style::Titlebar | sf::Style::Close),
 		camera(sf::FloatRect(0.0f, 0.0f, LARGURA_TELA, ALTURA_TELA)),
 		camera_movendo(false),
 		camera_destino(0.f, ALTURA_TELA/2),
