@@ -46,7 +46,7 @@ namespace Entidades {
 
 		void Formigueiro::salvarDataBuffer()
 		{
-			buffer << "formigeuiro";
+			buffer << "formigueiro";
 
 			Obstaculo::salvarDataBuffer();
 
